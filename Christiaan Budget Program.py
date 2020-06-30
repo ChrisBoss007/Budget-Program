@@ -1,5 +1,5 @@
 import tkinter as tk
-
+#A comment
 root = tk.Tk()
 root.title("Welcome to Budget calculator")
 root.geometry("380x330")
