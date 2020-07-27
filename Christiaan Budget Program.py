@@ -51,6 +51,7 @@ def createNewWindow():
 
 
    ##Part 3 last slide.
+
    def submit():
        Slide2.destroy()
        Slide3 = tk.Tk()
@@ -78,14 +79,35 @@ def createNewWindow():
 
 
                new_entry2 = tk.Entry(Slide3, width=8)
-               new_entry2.insert(0, "Amount of income")
+               new_entry2.insert(0, "Amount")
+
+               OptionList = [
+"Aries",
+"Taurus",
+"Gemini",
+"Cancer"
+]
+
+app = tk.Tk()
+
+app.geometry('100x200')
+
+variable = tk.StringVar(app)
+variable.set(OptionList[0])
+
+opt = tk.OptionMenu(app, variable, *OptionList)
+opt.config(width=90, font=('Helvetica', 12))
+opt.pack()
+
+app.mainloop()
 
 
 
                # Put widgets in grid
                self.num_rows += 1
                self.num_rows2 += 1
-               new_entry.grid(column=5, row=self.num_rows)
+
+               new_entry.grid(column=0, row=self.num_rows)
 
 
                def some_callback(event):
@@ -94,7 +116,7 @@ def createNewWindow():
 
                new_entry.bind("<Button-1>", some_callback)
 
-               new_entry2.grid(column=7, row=self.num_rows2)
+               new_entry2.grid(column=2, row=self.num_rows2)
 
 
 
