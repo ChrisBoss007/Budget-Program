@@ -62,12 +62,20 @@ def createNewWindow():
        positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
        Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
+       intro_message3 = "Here you can deposit or withdraw money and see your progress towards your goals, and insert your income and expenses and we will draw up a plan to solve your finance situation."
+       intro_msg3 = tk.Message(Slide3, text = intro_message3)
+       intro_msg3.config(bg='white', relief="sunken", width=480, borderwidth = 3, font=('times', 13))
+       intro_msg3.place(x=2, y=7)
+
 
        class App(object):
            def new_row(self):
                # Create widgets
                new_entry = tk.Entry(Slide3, width=15)
-               new_entry.insert(0, "Name of income")
+               name = new_entry.insert(0, "Name of income")
+
+               print(name)
+
 
                new_entry2 = tk.Entry(Slide3, width=8)
                new_entry2.insert(0, "Amount of income")
@@ -77,7 +85,7 @@ def createNewWindow():
                # Put widgets in grid
                self.num_rows += 1
                self.num_rows2 += 1
-               new_entry.grid(column=0, row=self.num_rows, sticky='WE')
+               new_entry.grid(column=5, row=self.num_rows)
 
 
                def some_callback(event):
@@ -86,7 +94,8 @@ def createNewWindow():
 
                new_entry.bind("<Button-1>", some_callback)
 
-               new_entry2.grid(column=2, row=self.num_rows2, sticky='WE')
+               new_entry2.grid(column=7, row=self.num_rows2)
+
 
 
                def some_callback(event):
@@ -101,6 +110,8 @@ def createNewWindow():
                createRow_button = tk.Button(
                       Slide3, text='New Row', command=self.new_row)
                createRow_button.grid()
+
+               print()
 
        app = App()
 
