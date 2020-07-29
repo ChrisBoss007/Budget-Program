@@ -36,7 +36,7 @@ intro_button1.pack(side=tk.RIGHT)
 def createNewWindow():
    intro_slide.destroy()
    Slide2 = tk.Tk()
-   Slide2.title("Budject calculator")
+   Slide2.title("Budget calculator")
    Slide2.geometry("480x380")
    windowWidth = Slide2.winfo_reqwidth()
    windowHeight = Slide2.winfo_reqheight()
@@ -63,7 +63,7 @@ def createNewWindow():
        positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
        Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
-       intro_message3 = "Here you can deposit or withdraw money and see your progress towards your goals, and insert your income and expenses and we will draw up a plan to solve your finance situation."
+       intro_message3 = "Here you can deposit or withdraw money and see your progress towards your goals, you can insert your income and expenses and we will draw up a plan to solve your finance situation."
        intro_msg3 = tk.Message(Slide3, text = intro_message3)
        intro_msg3.config(bg='white', relief="sunken", width=480, borderwidth = 3, font=('times', 13))
        intro_msg3.place(x=2, y=7)
@@ -81,57 +81,58 @@ def createNewWindow():
                new_entry2 = tk.Entry(Slide3, width=8)
                new_entry2.insert(0, "Amount")
 
-               OptionList = [
-"Aries",
-"Taurus",
-"Gemini",
-"Cancer"
-]
+               rate = OptionList = [
+                "Hourly",
+                "Daily",
+                "Weekly",
+                "Monthly"
+                ]
+               variable = tk.StringVar(Slide3)
+               variable.set(OptionList[0])
 
-app = tk.Tk()
+               opt = tk.OptionMenu(Slide3, variable, *OptionList)
+               opt.config(width=5, font=('Helvetica', 6))
 
-app.geometry('100x200')
+               print(rate)
 
-variable = tk.StringVar(app)
-variable.set(OptionList[0])
+               #Get it to save the value that the user inserted for thier rate of payment
 
-opt = tk.OptionMenu(app, variable, *OptionList)
-opt.config(width=90, font=('Helvetica', 12))
-opt.pack()
 
-app.mainloop()
+
+
 
 
 
                # Put widgets in grid
                self.num_rows += 1
                self.num_rows2 += 1
+               self.num_rows3 += 1
+
+               opt.grid(column=4, row=self.num_rows3)
+               opt.bind("<Button-1>")
+
 
                new_entry.grid(column=0, row=self.num_rows)
-
-
                def some_callback(event):
                    new_entry.delete(0, "end")
                    return None
-
                new_entry.bind("<Button-1>", some_callback)
 
                new_entry2.grid(column=2, row=self.num_rows2)
-
-
-
                def some_callback(event):
                    new_entry2.delete(0, "end")
                    return None
-
                new_entry2.bind("<Button-1>", some_callback)
+
+
 
            def __init__(self):
                self.num_rows = 1
                self.num_rows2 = 1
+               self.num_rows3 = 1
                createRow_button = tk.Button(
                       Slide3, text='New Row', command=self.new_row)
-               createRow_button.grid()
+               createRow_button.place(x=10, y=120)
 
                print()
 
@@ -205,7 +206,7 @@ app.mainloop()
 
 
    ##Part 2 of the second slide
-   Label_job = tk.Label(Slide2, text="1. Do you have a Job?", font=("times", 15) )
+   Label_job = tk.Label(Slide2, text="1. Do you have a Job?", font=("times", 14))
    Label_job.pack()
    Label_job.place(x=30, y=120)
 
@@ -221,6 +222,23 @@ app.mainloop()
                                              indicatoron=False)
    radiobutton_widget1.place(x=90, y=150)
    radiobutton_widget2.place(x=117, y=150)
+
+   Label_job2 = tk.Label(Slide2, text="1. Do you have a Degree?", font=("times", 14))
+   Label_job2.pack()
+   Label_job2.place(x=30, y=179)
+
+   radioValue = tk.IntVar()
+   radiobutton_widget3 = tk.Radiobutton(Slide2,
+                                             text="Yes",
+                                             variable=radioValue, value=1,
+                                             indicatoron=False)
+
+   radiobutton_widget4 = tk.Radiobutton(Slide2,
+                                             text="No",
+                                             variable=radioValue, value=2,
+                                             indicatoron=False)
+   radiobutton_widget3.place(x=90, y=210)
+   radiobutton_widget4.place(x=117, y=210)
 
    Label_job2 = tk.Label(Slide2, textvariable=radioValue)
    Label_job2.pack()
