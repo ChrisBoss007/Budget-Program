@@ -1,6 +1,4 @@
 import tkinter as tk
-#A comment
-#Another comment
 root = tk.Tk()
 root.title("Welcome to Budget calculator")
 root.geometry("380x330")
@@ -35,84 +33,50 @@ intro_button1.pack(side=tk.RIGHT)
 
 
 
-def createNewWindow():
-   intro_slide.destroy()
-   Slide2 = tk.Tk()
-   Slide2.title("Budget calculator")
-   Slide2.geometry("480x380")
-   windowWidth = Slide2.winfo_reqwidth()
-   windowHeight = Slide2.winfo_reqheight()
-   positionRight = int(Slide2.winfo_screenwidth() / 2 - windowWidth / 2)
-   positionDown = int(Slide2.winfo_screenheight() / 2 - windowHeight / 2)
-   Slide2.geometry("+{}+{}".format(positionRight, positionDown))
+def PageOpen():
+    intro_slide.destroy()
+    Slide2 = tk.Tk()
+    Slide2.title("Budget")
+    Slide2.geometry("300x270")
+    windowWidth = Slide2.winfo_reqwidth()
+    windowHeight = Slide2.winfo_reqheight()
+    positionRight = int(Slide2.winfo_screenwidth() / 2 - windowWidth / 2)
+    positionDown = int(Slide2.winfo_screenheight() / 2 - windowHeight / 2)
+    Slide2.geometry("+{}+{}".format(positionRight, positionDown))
 
-   def clear_widget(event):
-        # will clear out any entry boxes defined below when the user shifts
-        # focus to the widgets defined below
-        if username_box == Slide2.focus_get() and username_box.get() == 'Enter Username':
-            username_box.delete(0, "end")
-        elif password_box == password_box.focus_get() and password_box.get() == '     ':
-            password_box.delete(0, "end")
-
-   def repopulate_defaults(event):
-        # will repopulate the default text previously inside the entry boxes defined below if
-        # the user does not put anything in while focused and changes focus to another widget
-        if username_box != Slide2.focus_get() and username_box.get() == '':
-            username_box.insert(0, 'Enter Username')
-        elif password_box != Slide2.focus_get() and password_box.get() == '':
-            password_box.insert(0, '     ')
-
-   def login(*event):
-        # Able to be called from a key binding or a button click because of the '*event'
-        print('Username: ' + username_box.get())
-        print('Password: ' + password_box.get())
+    def register():
         Slide2.destroy()
-        # If I wanted I could also pass the username and password I got above to another
-        # function from here.
+        Slide3 = tk.Tk()
+        Slide3.title("Budget")
+        Slide3.geometry("300x270")
+        windowWidth = Slide3.winfo_reqwidth()
+        windowHeight = Slide3.winfo_reqheight()
+        positionRight = int(Slide3.winfo_screenwidth() / 2 - windowWidth / 2)
+        positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
+        Slide3.geometry("+{}+{}".format(positionRight, positionDown))
+
+
+    def login():
+        print("Works")
+
+    registerbtn = tk.Button(Slide2, text="Register", height = 10, width = 20, command=register)
+    registerbtn.pack(fill=tk.Y, side=tk.LEFT, pady=30)
+
+    loginbtn = tk.Button(Slide2, text="Login", height = 10, width = 20, command=login)
+    loginbtn.pack(side=tk.RIGHT, fill=tk.Y, pady=30)
+
+    Label1 = tk.Label(Slide2, text="Do you have an account?", bg='white', relief="sunken", borderwidth = 3, font=('times', 13))
+    Label1.place(x=60, y=3)
 
 
 
 
-    # defines a grid 50 x 50 cells in the main window
-   rows = 0
-   while rows < 10:
-        Slide2.rowconfigure(rows, weight=1)
-        Slide2.columnconfigure(rows, weight=1)
-        rows += 1
 
-   # adds username entry widget and defines its properties
-   username_box = tk.Entry(Slide2)
-   username_box.insert(0, 'Enter Username')
-   username_box.bind("<FocusIn>", clear_widget)
-   username_box.bind('<FocusOut>', repopulate_defaults)
-   username_box.grid(row=1, column=5, sticky='NS')
-
-
-    # adds password entry widget and defines its properties
-   password_box = tk.Entry(Slide2, show='*')
-   password_box.insert(0, '     ')
-   password_box.bind("<FocusIn>", clear_widget)
-   password_box.bind('<FocusOut>', repopulate_defaults)
-   password_box.bind('<Return>', login)
-   password_box.grid(row=2, column=5, sticky='NS')
-
-
-    # adds login button and defines its properties
-   login_btn = tk.Button(Slide2, text='Login', command=login)
-   login_btn.bind('<Return>', login)
-   login_btn.grid(row=5, column=5, sticky='NESW')
-
-
-
-
-#part 1, close button, intro slide
 intro_button2 = tk.Button(frame,
                          text="YES",
                          fg="green",
-                         command=createNewWindow)
+                         command=PageOpen)
 
 intro_button2.pack(side=tk.LEFT)
 
 root.mainloop()
-
-#fgjhdfjkghdfjkg
