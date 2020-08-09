@@ -24,7 +24,15 @@ def PageOpen():
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
-        print("Works")
+        Slide2.destroy()
+        Slide3 = tk.Tk()
+        Slide3.title("Budget")
+        Slide3.geometry("300x270")
+        windowWidth = Slide3.winfo_reqwidth()
+        windowHeight = Slide3.winfo_reqheight()
+        positionRight = int(Slide3.winfo_screenwidth() / 2 - windowWidth / 2)
+        positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
+        Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
     #Button will run the register function once clicked.
     registerbtn = tk.Button(Slide2, text="Register", height = 10, width = 20, command=register)
