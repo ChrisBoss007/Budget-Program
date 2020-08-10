@@ -23,13 +23,22 @@ def PageOpen():
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
         #A Label exsplaing what the user is supoes to do here.
-        IntroLabel = tk.Label(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3).grid(row = 0,column = 0)
+        IntroLabel = tk.Label(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3).grid(row=0,column=0, sticky="N")
 
         #Adding the labels that give information on what i want the user to type where.
         NameLabel = tk.Label(Slide3, text="         First Name:", font=('times', 13)).grid(row = 2,column = 0, sticky="w")
         SurNameLabel = tk.Label(Slide3, text="          Last Name:", font=('times', 13)).grid(row = 3,column = 0, sticky="w")
         EmailLabel = tk.Label(Slide3, text="    Email Address:", font=('times', 13)).grid(row = 4,column = 0, sticky="w")
         PhoneLable = tk.Label(Slide3, text=" Contact Number:", font=('times', 13)).grid(row = 5,column = 0, sticky="w")
+
+        NameEntry = tk.Entry(Slide3, text="Type your text here!", bd=2, cursor="dot", font=("times", 10))
+        NameEntry.insert(0, "Type your text here!")
+        def some_callback(event):
+            NameEntry.delete(0, "end")
+            return None
+        NameEntry.bind("<Button-1>", some_callback)
+        NameEntry.grid(row=2, column=1, sticky="w")
+
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
