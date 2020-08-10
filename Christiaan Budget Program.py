@@ -26,10 +26,10 @@ def PageOpen():
         IntroLabel = tk.Label(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3).grid(row = 0,column = 0)
 
         #Adding the labels that give information on what i want the user to type where.
-        NameLabel = tk.Label(Slide3, text="        First Name:", font=('times', 13)).grid(row = 2,column = 2)
-        SurNameLabel = tk.Label(Slide3, text="         Last Name:", font=('times', 13)).grid(row = 3,column = 2)
-        EmailLabel = tk.Label(Slide3, text="   Email Address:", font=('times', 13)).grid(row = 4,column = 2)
-        PhoneLable = tk.Label(Slide3, text="Contact Number:", font=('times', 13)).grid(row = 5,column = 2)
+        NameLabel = tk.Label(Slide3, text="         First Name:", font=('times', 13)).grid(row = 2,column = 0, sticky="w")
+        SurNameLabel = tk.Label(Slide3, text="          Last Name:", font=('times', 13)).grid(row = 3,column = 0, sticky="w")
+        EmailLabel = tk.Label(Slide3, text="    Email Address:", font=('times', 13)).grid(row = 4,column = 0, sticky="w")
+        PhoneLable = tk.Label(Slide3, text=" Contact Number:", font=('times', 13)).grid(row = 5,column = 0, sticky="w")
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
