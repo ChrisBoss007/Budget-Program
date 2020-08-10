@@ -22,6 +22,9 @@ def PageOpen():
         positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
+        #A Label exsplaing what the user is supoes to do here.
+        IntroLabel = tk.Label(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3).grid(row = 0,column = 0)
+
         #Adding the labels that give information on what i want the user to type where.
         NameLabel = tk.Label(Slide3, text="        First Name:", font=('times', 13)).grid(row = 2,column = 2)
         SurNameLabel = tk.Label(Slide3, text="         Last Name:", font=('times', 13)).grid(row = 3,column = 2)
