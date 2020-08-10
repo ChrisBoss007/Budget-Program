@@ -15,12 +15,18 @@ def PageOpen():
         Slide2.destroy()
         Slide3 = tk.Tk()
         Slide3.title("Budget")
-        Slide3.geometry("300x270")
+        Slide3.geometry("500x470")
         windowWidth = Slide3.winfo_reqwidth()
         windowHeight = Slide3.winfo_reqheight()
         positionRight = int(Slide3.winfo_screenwidth() / 2 - windowWidth / 2)
         positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
+
+        #Adding the labels that give information on what i want the user to type where.
+        NameLabel = tk.Label(Slide3, text="        First Name:", font=('times', 13)).grid(row = 2,column = 2)
+        SurNameLabel = tk.Label(Slide3, text="         Last Name:", font=('times', 13)).grid(row = 3,column = 2)
+        EmailLabel = tk.Label(Slide3, text="   Email Address:", font=('times', 13)).grid(row = 4,column = 2)
+        PhoneLable = tk.Label(Slide3, text="Contact Number:", font=('times', 13)).grid(row = 5,column = 2)
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
