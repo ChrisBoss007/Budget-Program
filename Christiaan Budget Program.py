@@ -23,7 +23,7 @@ def PageOpen():
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
         #A Label exsplaing what the user is supoes to do here.
-        IntroLabel = tk.Label(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3).grid(row=0,column=0, sticky="N")
+        IntroLabel = tk.Message(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(row=0,column=0, sticky="N")
 
         #Adding the labels that give information on what i want the user to type where.
         NameLabel = tk.Label(Slide3, text="         First Name:", font=('times', 13)).grid(row = 2,column = 0, sticky="w")
@@ -37,7 +37,7 @@ def PageOpen():
             NameEntry.delete(0, "end")
             return None
         NameEntry.bind("<Button-1>", some_callback)
-        NameEntry.grid(row=2, column=1, sticky="w")
+        NameEntry.grid(row=2, column=0, pady=50, padx=300)
 
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
