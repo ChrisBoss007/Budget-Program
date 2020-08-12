@@ -10,6 +10,19 @@ def PageOpen():
     positionDown = int(Slide2.winfo_screenheight() / 2 - windowHeight / 2)
     Slide2.geometry("+{}+{}".format(positionRight, positionDown))
 
+      #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
+    def login():
+        Slide2.destroy()
+        Slide3 = tk.Tk()
+        Slide3.title("Sign Up")
+        Slide3.geometry("300x270")
+        windowWidth = Slide3.winfo_reqwidth()
+        windowHeight = Slide3.winfo_reqheight()
+        positionRight = int(Slide3.winfo_screenwidth() / 2 - windowWidth / 2)
+        positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
+        Slide3.geometry("+{}+{}".format(positionRight, positionDown))
+
+
     #If the user doesnt have an account they button register will open this window and will close the old window, and open the regiter window where they can register their account.
     def register():
         Slide2.destroy()
@@ -27,6 +40,7 @@ def PageOpen():
 
         def submit():
 
+
             name=UserNameEntry.get()
             password=passw_var.get()
 
@@ -35,6 +49,9 @@ def PageOpen():
 
             name_var.set("")
             passw_var.set("")
+
+            #self.Name = name
+            #self.Pass = password
 
         #A Label exsplaing what the user is supoes to do here.
         IntroLabel = tk.Message(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(columnspan=2)
@@ -107,17 +124,6 @@ def PageOpen():
         Clearbtn.grid(row=19, column=0)
 
 
-    #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
-    def login():
-        Slide2.destroy()
-        Slide3 = tk.Tk()
-        Slide3.title("Sign Up")
-        Slide3.geometry("300x270")
-        windowWidth = Slide3.winfo_reqwidth()
-        windowHeight = Slide3.winfo_reqheight()
-        positionRight = int(Slide3.winfo_screenwidth() / 2 - windowWidth / 2)
-        positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
-        Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
     #Button will run the register function once clicked.
     registerbtn = tk.Button(Slide2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green")
