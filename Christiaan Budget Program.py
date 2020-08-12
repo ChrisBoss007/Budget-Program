@@ -31,6 +31,10 @@ def PageOpen():
         EmailLabel = tk.Label(Slide3, text="    Email Address:", font=('times', 13)).grid(row=4, column=0, sticky="w")
         PhoneLable = tk.Label(Slide3, text="Contact Number:", font=('times', 13)).grid(row=5, column=0, sticky="w")
 
+
+        UserNameLable = tk.Label(Slide3, text="Username:", font=('times', 15)).grid(row=3, column=1)
+
+
         NameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
         NameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -82,16 +86,16 @@ def PageOpen():
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
     #Button will run the register function once clicked.
-    registerbtn = tk.Button(Slide2, text="Register", height = 10, width = 20, command=register)
-    registerbtn.pack(fill=tk.Y, side=tk.LEFT, pady=30)
+    registerbtn = tk.Button(Slide2, text="Register", height=1, width=7, command=register, font=("times", 15))
+    registerbtn.grid(row=4, column=1)
 
     #Button will run the login function once clicked.
-    loginbtn = tk.Button(Slide2, text="Login", height = 10, width = 20, command=login)
-    loginbtn.pack(side=tk.RIGHT, fill=tk.Y, pady=30)
+    loginbtn = tk.Button(Slide2, text="Login", height=1, width=7, command=login, font=("times", 15))
+    loginbtn.grid(row=4, column=3, padx=10)
 
     #A Label informing the user what each button does.
     Label1 = tk.Label(Slide2, text="Do you have an account?", bg='white', relief="sunken", borderwidth = 3, font=('times', 13))
-    Label1.place(x=60, y=3)
+    Label1.grid(row=0, column=2)
 
 
 import tkinter as tk
