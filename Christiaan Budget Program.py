@@ -31,13 +31,42 @@ def PageOpen():
         EmailLabel = tk.Label(Slide3, text="    Email Address:", font=('times', 13)).grid(row=4, column=0, sticky="w")
         PhoneLable = tk.Label(Slide3, text="Contact Number:", font=('times', 13)).grid(row=5, column=0, sticky="w")
 
-        NameEntry = tk.Entry(Slide3, bd=2, cursor="dot", font=("times", 10))
+        NameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
         NameEntry.insert(0, "Type your text here!")
         def some_callback(event):
             NameEntry.delete(0, "end")
             return None
         NameEntry.bind("<Button-1>", some_callback)
         NameEntry.grid(row=2, column=0, padx=95)
+        #------------------------------------------------------------------------------
+        SurNameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+        SurNameEntry.insert(0, "Type your text here!")
+        def some_callback(event):
+            SurNameEntry.delete(0, "end")
+            return None
+        SurNameEntry.bind("<Button-1>", some_callback)
+        SurNameEntry.grid(row=3, column=0, padx=95)
+        #----------------------------------------------------------------------------------
+        EmailEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+        EmailEntry.insert(0, "Type your text here!")
+        def some_callback(event):
+            EmailEntry.delete(0, "end")
+            return None
+        EmailEntry.bind("<Button-1>", some_callback)
+        EmailEntry.grid(row=4, column=0, padx=95)
+
+        PhoneEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+        PhoneEntry.insert(0, "Type your text here!")
+        def some_callback(event):
+            PhoneEntry.delete(0, "end")
+            return None
+        PhoneEntry.bind("<Button-1>", some_callback)
+        PhoneEntry.grid(row=5, column=0, padx=95)
+
+
+
+
+
 
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
