@@ -14,7 +14,7 @@ def PageOpen():
     def register():
         Slide2.destroy()
         Slide3 = tk.Tk()
-        Slide3.title("Budget")
+        Slide3.title("Sign Up")
         Slide3.geometry("500x470")
         windowWidth = Slide3.winfo_reqwidth()
         windowHeight = Slide3.winfo_reqheight()
@@ -77,7 +77,7 @@ def PageOpen():
     def login():
         Slide2.destroy()
         Slide3 = tk.Tk()
-        Slide3.title("Budget")
+        Slide3.title("Sign Up")
         Slide3.geometry("300x270")
         windowWidth = Slide3.winfo_reqwidth()
         windowHeight = Slide3.winfo_reqheight()
@@ -86,19 +86,26 @@ def PageOpen():
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
 
     #Button will run the register function once clicked.
-    registerbtn = tk.Button(Slide2, text="Register", height=1, width=7, command=register, font=("times", 15))
-    registerbtn.grid(row=4, column=1)
+    registerbtn = tk.Button(Slide2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green")
+    registerbtn.place(x=50, y=40)
 
     #Button will run the login function once clicked.
-    loginbtn = tk.Button(Slide2, text="Login", height=1, width=7, command=login, font=("times", 15))
-    loginbtn.grid(row=4, column=3, padx=10)
+    loginbtn = tk.Button(Slide2, text="Login", height=1, width=7, command=login, font=("times", 15), cursor="top_left_arrow", fg="blue")
+    loginbtn.place(x=155, y=40)
 
     #A Label informing the user what each button does.
     Label1 = tk.Label(Slide2, text="Do you have an account?", bg='white', relief="sunken", borderwidth = 3, font=('times', 13))
-    Label1.grid(row=0, column=2)
+    Label1.place(x=60, y=0)
+    #This function will run to pop up a meesage box if the user needs helps
+    def onClick():
+        tk.messagebox.showinfo("Help", "If you dont already have an account register to make one, if you do you can go ahead and login.")
+
+    Helpbutton = tk.Button(Slide2, text="?", command=onClick, fg="red", cursor="question_arrow")
+    Helpbutton.place(x=20, y=20)
 
 
 import tkinter as tk
+from tkinter import messagebox
 root = tk.Tk()
 #Making the introduction window.
 root.title("Welcome to Budget calculator")
