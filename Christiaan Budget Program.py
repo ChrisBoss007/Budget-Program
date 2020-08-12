@@ -15,12 +15,26 @@ def PageOpen():
         Slide2.destroy()
         Slide3 = tk.Tk()
         Slide3.title("Sign Up")
-        Slide3.geometry("500x470")
+        Slide3.geometry("450x320")
         windowWidth = Slide3.winfo_reqwidth()
         windowHeight = Slide3.winfo_reqheight()
         positionRight = int(Slide3.winfo_screenwidth() / 2 - windowWidth / 2)
         positionDown = int(Slide3.winfo_screenheight() / 2 - windowHeight / 2)
         Slide3.geometry("+{}+{}".format(positionRight, positionDown))
+
+        name_var=tk.StringVar()
+        passw_var=tk.StringVar()
+
+        def submit():
+
+            name=UserNameEntry.get()
+            password=passw_var.get()
+
+            print("The name is : " + name)
+            print("The password is : " + password)
+
+            name_var.set("")
+            passw_var.set("")
 
         #A Label exsplaing what the user is supoes to do here.
         IntroLabel = tk.Message(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(columnspan=2)
@@ -33,7 +47,7 @@ def PageOpen():
         UserNameLable = tk.Label(Slide3, text="Username:", font=('times', 15)).grid(row=9, column=0)
         PasswordLable = tk.Label(Slide3, text="Password:", font=('times', 15)).grid(row=12, column=0)
 
-
+        #Entry functions
         NameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
         NameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -66,8 +80,8 @@ def PageOpen():
         PhoneEntry.bind("<Button-1>", some_callback)
         PhoneEntry.grid(row=5, column=0, padx=95)
 
-
-        UserNameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+        #This is the username and password entrys
+        UserNameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10), textvariable = name_var)
         UserNameEntry.insert(0, "Type your text here!")
         def some_callback(event):
             UserNameEntry.delete(0, "end")
@@ -75,13 +89,23 @@ def PageOpen():
         UserNameEntry.bind("<Button-1>", some_callback)
         UserNameEntry.grid(row=10, column=0, padx=95)
 
-        PasswordEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+
+        PasswordEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var)
         PasswordEntry.insert(0, "Type your text here!")
         def some_callback(event):
             PasswordEntry.delete(0, "end")
             return None
         PasswordEntry.bind("<Button-1>", some_callback)
         PasswordEntry.grid(row=13, column=0, padx=95)
+
+        #Button will save their password and username.
+        Submitbtn = tk.Button(Slide3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=submit)
+        Submitbtn.grid(row=17, column=0)
+
+        #Button will run the login function once clicked.
+        Clearbtn = tk.Button(Slide3, text="Clear", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue")
+        Clearbtn.grid(row=19, column=0)
+
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
