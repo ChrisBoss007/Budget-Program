@@ -30,9 +30,8 @@ def PageOpen():
         SurNameLabel = tk.Label(Slide3, text="          Last Name:", font=('times', 13)).grid(row=3, column=0, sticky="w")
         EmailLabel = tk.Label(Slide3, text="    Email Address:", font=('times', 13)).grid(row=4, column=0, sticky="w")
         PhoneLable = tk.Label(Slide3, text="Contact Number:", font=('times', 13)).grid(row=5, column=0, sticky="w")
-
-
-        UserNameLable = tk.Label(Slide3, text="Username:", font=('times', 15)).grid(row=3, column=1)
+        UserNameLable = tk.Label(Slide3, text="Username:", font=('times', 15)).grid(row=9, column=0)
+        PasswordLable = tk.Label(Slide3, text="Password:", font=('times', 15)).grid(row=12, column=0)
 
 
         NameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
@@ -58,7 +57,7 @@ def PageOpen():
             return None
         EmailEntry.bind("<Button-1>", some_callback)
         EmailEntry.grid(row=4, column=0, padx=95)
-
+        #------------------------------------------------------------------------------------
         PhoneEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
         PhoneEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -68,10 +67,21 @@ def PageOpen():
         PhoneEntry.grid(row=5, column=0, padx=95)
 
 
+        UserNameEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+        UserNameEntry.insert(0, "Type your text here!")
+        def some_callback(event):
+            UserNameEntry.delete(0, "end")
+            return None
+        UserNameEntry.bind("<Button-1>", some_callback)
+        UserNameEntry.grid(row=10, column=0, padx=95)
 
-
-
-
+        PasswordEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10))
+        PasswordEntry.insert(0, "Type your text here!")
+        def some_callback(event):
+            PasswordEntry.delete(0, "end")
+            return None
+        PasswordEntry.bind("<Button-1>", some_callback)
+        PasswordEntry.grid(row=13, column=0, padx=95)
 
     #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
