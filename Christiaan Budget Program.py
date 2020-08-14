@@ -12,7 +12,7 @@ def PageOpen():
 
       #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
-        Slide2.destroy()
+        Slide2.withdraw()
         Slide3 = tk.Tk()
         Slide3.title("Sign Up")
         Slide3.geometry("300x270")
@@ -25,7 +25,7 @@ def PageOpen():
 
     #If the user doesnt have an account they button register will open this window and will close the old window, and open the regiter window where they can register their account.
     def register():
-        Slide2.destroy()
+        Slide2.withdraw()
         Slide3 = tk.Tk()
         Slide3.title("Sign Up")
         Slide3.geometry("450x320")
@@ -49,9 +49,6 @@ def PageOpen():
 
             name_var.set("")
             passw_var.set("")
-
-            #self.Name = name
-            #self.Pass = password
 
         #A Label exsplaing what the user is supoes to do here.
         IntroLabel = tk.Message(Slide3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(columnspan=2)
@@ -107,7 +104,7 @@ def PageOpen():
         UserNameEntry.grid(row=10, column=0, padx=95)
 
 
-        PasswordEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var)
+        PasswordEntry = tk.Entry(Slide3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var, show="*")
         PasswordEntry.insert(0, "Type your text here!")
         def some_callback(event):
             PasswordEntry.delete(0, "end")
@@ -120,8 +117,8 @@ def PageOpen():
         Submitbtn.grid(row=17, column=0)
 
         #Button will run the login function once clicked.
-        Clearbtn = tk.Button(Slide3, text="Clear", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue")
-        Clearbtn.grid(row=19, column=0)
+        Contuinebtn = tk.Button(Slide3, text="Contuine", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue", command=login)
+        Contuinebtn.grid(row=19, column=0)
 
 
 
@@ -136,7 +133,7 @@ def PageOpen():
     #A Label informing the user what each button does.
     Label1 = tk.Label(Slide2, text="Do you have an account?", bg='white', relief="sunken", borderwidth = 3, font=('times', 13))
     Label1.place(x=60, y=0)
-    #This function will run to pop up a meesage box if the user needs helps
+    #This function will run to pop up a mesage box if the user needs helps
     def onClick():
         tk.messagebox.showinfo("Help", "If you dont already have an account register to make one, if you do you can go ahead and login.")
 
