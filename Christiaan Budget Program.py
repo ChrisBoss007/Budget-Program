@@ -25,7 +25,13 @@ def PageOpen():
         UserName = tk.Label(Window3, text="Username:", font=('times', 15))
         UserName.place(x=100, y=0)
 
-        UserEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13))
+        def write_File (text_File):
+            file = open(name, "r")
+            user_Input = text_File.get()
+            file.write(user_Input)
+            file.close()
+
+        UserEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), command=lambda: write_File(UserEntry))
         UserEntry.insert(0, "Type your text here!")
         def some_callback(event):
             UserEntry.delete(0, "end")
@@ -76,18 +82,6 @@ def PageOpen():
 
 
         #This is where the value of the users unsername and password is saved.
-        def submit():
-
-
-            name=UserNameEntry.get()
-            password=passw_var.get()
-
-            print("The name is : " + name)
-            print("The password is : " + password)
-
-            name_var.set("")
-            passw_var.set("")
-
         #A Label exsplaing what the user is supoes to do here.
         IntroLabel = tk.Message(Window3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(columnspan=2)
 
@@ -141,6 +135,24 @@ def PageOpen():
         UserNameEntry.bind("<Button-1>", some_callback)
         UserNameEntry.grid(row=10, column=0, padx=95)
 
+        def write_File (text_File):
+
+
+            name=UserNameEntry.get()
+            password=passw_var.get()
+
+            print("The name is : " + name)
+            print("The password is : " + password)
+
+            name_var.set("")
+            passw_var.set("")
+
+            file = open(name, "a")
+            user_Input = text_File.get()
+            file.write(user_Input)
+            file.close()
+            return name
+
 
         PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var, show="*")
         PasswordEntry.insert(0, "")
@@ -151,7 +163,7 @@ def PageOpen():
         PasswordEntry.grid(row=13, column=0, padx=95)
 
         #Button will save their password and username.
-        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=submit)
+        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(PasswordEntry))
         Submitbtn.grid(row=17, column=0)
 
         #Button will run the login function once clicked.
