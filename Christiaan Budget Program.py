@@ -22,16 +22,28 @@ def PageOpen():
         positionDown = int(Window3.winfo_screenheight() / 2 - windowHeight / 2)
         Window3.geometry("+{}+{}".format(positionRight, positionDown))
 
+
+
+
+
         UserName = tk.Label(Window3, text="Username:", font=('times', 15))
         UserName.place(x=100, y=0)
 
-        def write_File (text_File):
-            file = open(name, "r")
-            user_Input = text_File.get()
-            file.write(user_Input)
+        def write_File (name):
+
+            local_path = os.path.join("C:/Users/Meyerc2/PycharmProjects/Budget-Program/Christiaan Budget Program.py", name)
+            file = open(local_path, "r")
+
+
+            file.write(name)
             file.close()
 
-        UserEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), command=lambda: write_File(UserEntry))
+
+
+
+
+
+        UserEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13))
         UserEntry.insert(0, "Type your text here!")
         def some_callback(event):
             UserEntry.delete(0, "end")
@@ -40,7 +52,7 @@ def PageOpen():
         UserEntry.place(x=62, y=30)
 
         UserPassword = tk.Label(Window3, text="Password:", font=('times', 15))
-        UserPassword.place(x=100, y=65)
+        UserPassword.place(x=105, y=110)
 
         PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), show="*")
         PasswordEntry.insert(0, "")
@@ -48,7 +60,7 @@ def PageOpen():
             PasswordEntry.delete(0, "end")
             return None
         PasswordEntry.bind("<Button-1>", some_callback)
-        PasswordEntry.place(x=62, y=100)
+        PasswordEntry.place(x=62, y=140)
 
         def Program():
             Window3.withdraw()
@@ -62,7 +74,10 @@ def PageOpen():
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
         Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green")
-        Startbtn.place(x=105, y=140)
+        Startbtn.place(x=105, y=180)
+
+        Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: write_File(UserEntry), font=("times", 15), cursor="top_left_arrow", fg="green")
+        Nextbtn.place(x=105, y=65)
 
 
     #If the user doesnt have an account they button register will open this window and will close the old window, and open the regiter window where they can register their account.
@@ -163,7 +178,7 @@ def PageOpen():
         PasswordEntry.grid(row=13, column=0, padx=95)
 
         #Button will save their password and username.
-        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(PasswordEntry))
+        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(UserNameEntry)) #THis was Password entry but i changed it to Username entry not sure what that does
         Submitbtn.grid(row=17, column=0)
 
         #Button will run the login function once clicked.
@@ -193,6 +208,7 @@ def PageOpen():
 
 import tkinter as tk
 from tkinter import messagebox
+import os as os
 root = tk.Tk()
 #Making the introduction window.
 root.title("Welcome to Budget calculator")
