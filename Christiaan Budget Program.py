@@ -48,13 +48,13 @@ def PageOpen():
         UserPassword = tk.Label(Window3, text="Password:", font=('times', 15))
         UserPassword.place(x=105, y=110)
 
-        PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), show="*")
-        PasswordEntry.insert(0, "")
+        PasswordEntryt = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), show="*")
+        PasswordEntryt.insert(0, "")
         def some_callback(event):
-            PasswordEntry.delete(0, "end")
+            PasswordEntryt.delete(0, "end")
             return None
-        PasswordEntry.bind("<Button-1>", some_callback)
-        PasswordEntry.place(x=62, y=140)
+        PasswordEntryt.bind("<Button-1>", some_callback)
+        PasswordEntryt.place(x=62, y=140)
 
         def Program():
             Window3.withdraw()
@@ -72,6 +72,9 @@ def PageOpen():
 
         Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: write_File(UserEntry), font=("times", 15), cursor="top_left_arrow", fg="green")
         Nextbtn.place(x=105, y=65)
+
+        Recoverbtn = tk.Button(Window3, text="Forgot Password?", cursor="top_left_arrow", fg="blue")
+        Recoverbtn.place(x=170, y=230)
 
 
     #If the user doesnt have an account they button register will open this window and will close the old window, and open the regiter window where they can register their account.
@@ -119,7 +122,7 @@ def PageOpen():
         SurNameEntry.bind("<Button-1>", some_callback)
         SurNameEntry.grid(row=3, column=0, padx=95)
         #----------------------------------------------------------------------------------
-        EmailEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
+        EmailEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = entryemail)
         EmailEntry.insert(0, "Type your text here!")
         def some_callback(event):
             EmailEntry.delete(0, "end")
