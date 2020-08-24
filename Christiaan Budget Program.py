@@ -1,4 +1,4 @@
-#This function will open the second window after the intro window. this function closes the old window and opens the new window where the user is asked to register or make an account.
+#This function will open the second window after the introduction window.
 def PageOpen():
     intro_slide.destroy()
     Window2 = tk.Tk()
@@ -30,13 +30,7 @@ def PageOpen():
         UserName.place(x=100, y=0)
 
         def write_File (name):
-
-            local_path = os.path.join("C:/Users/Meyerc2/PycharmProjects/Budget-Program/Christiaan Budget Program.py", name)
-            file = open(local_path, "r")
-
-
-            file.write(name)
-            file.close()
+            print(name)
 
 
 
@@ -108,7 +102,7 @@ def PageOpen():
         UserNameLable = tk.Label(Window3, text="Username:", font=('times', 15)).grid(row=9, column=0)
         PasswordLable = tk.Label(Window3, text="Password:", font=('times', 15)).grid(row=12, column=0)
 
-        #Entry functions
+        #Entry functions to save users information/
         NameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
         NameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -140,8 +134,7 @@ def PageOpen():
             return None
         PhoneEntry.bind("<Button-1>", some_callback)
         PhoneEntry.grid(row=5, column=0, padx=95)
-
-        #This is the username and password entrys
+        #This is the username entry and will save a text file with the username as the name of the file.
         UserNameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = name_var)
         UserNameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -149,26 +142,40 @@ def PageOpen():
             return None
         UserNameEntry.bind("<Button-1>", some_callback)
         UserNameEntry.grid(row=10, column=0, padx=95)
+        #This function will make a new file and write all the nessacary inforamtion to make thier account.
+        def write_File (text_File, passw_var):
 
-        def write_File (text_File):
-
-
+            #This is where i get all the values of the entrys.
             name=UserNameEntry.get()
-            password=passw_var.get()
-
+            password=PasswordEntry.get()
+            email=EmailEntry.get()
+            phonenumber=PhoneEntry.get()
+            firstname=NameEntry.get()
+            surname=SurNameEntry.get()
+            #This checks that the password is being saved.
             print("The name is : " + name)
             print("The password is : " + password)
 
             name_var.set("")
             passw_var.set("")
-
+            #This writes all the values into the file then closes it.
             file = open(name, "a")
             user_Input = text_File.get()
-            file.write(user_Input)
+            file.write("Username: " + user_Input)
+            file.write("\n")
+            file.write("Password: " + password)
+            file.write("\n")
+            file.write("FistName: " + firstname)
+            file.write("\n")
+            file.write("SurName: " + surname)
+            file.write("\n")
+            file.write("Email: " + email)
+            file.write("\n")
+            file.write("Phone number: " + phonenumber)
             file.close()
             return name
 
-
+        #This is the password entry.
         PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var, show="*")
         PasswordEntry.insert(0, "")
         def some_callback(event):
@@ -178,7 +185,7 @@ def PageOpen():
         PasswordEntry.grid(row=13, column=0, padx=95)
 
         #Button will save their password and username.
-        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(UserNameEntry)) #THis was Password entry but i changed it to Username entry not sure what that does
+        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(UserNameEntry, passw_var)) #THis was Password entry but i changed it to Username entry not sure what that does
         Submitbtn.grid(row=17, column=0)
 
         #Button will run the login function once clicked.
@@ -186,7 +193,7 @@ def PageOpen():
         Contuinebtn.grid(row=19, column=0)
 
 
-
+    #This is part of the pageopen function and will ask the user to register or login.
     #Button will run the register function once clicked.
     registerbtn = tk.Button(Window2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green")
     registerbtn.place(x=50, y=40)
@@ -201,7 +208,7 @@ def PageOpen():
     #This function will run to pop up a mesage box if the user needs helps
     def onClick():
         tk.messagebox.showinfo("Help", "If you dont already have an account register to make one, if you do you can go ahead and login.")
-
+    #This button runs the function to show a help message.
     Helpbutton = tk.Button(Window2, text="?", command=onClick, fg="red", cursor="question_arrow")
     Helpbutton.place(x=20, y=20)
 
