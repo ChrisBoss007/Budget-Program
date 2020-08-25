@@ -122,7 +122,7 @@ def PageOpen():
         SurNameEntry.bind("<Button-1>", some_callback)
         SurNameEntry.grid(row=3, column=0, padx=95)
         #----------------------------------------------------------------------------------
-        EmailEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = entryemail)
+        EmailEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
         EmailEntry.insert(0, "Type your text here!")
         def some_callback(event):
             EmailEntry.delete(0, "end")
