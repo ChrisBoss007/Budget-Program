@@ -31,9 +31,12 @@ def PageOpen():
 
         def openfile():
             username = UserEntry.get()
-            file = open(username, "rb")
-            file_content = file.read()
-            print(file_content)
+            file = open(username, "r")
+            lineList = [line.rstrip('\n') for line in open(username)]
+            print(lineList)
+            password2 = lineList[1]
+            print(password2)
+
 
 
 
@@ -176,7 +179,7 @@ def PageOpen():
             file.write("\n")
             file.write("Phone number: " + phonenumber)
             file.close()
-            return name
+            return name, password
 
 
         #This is the password entry.
