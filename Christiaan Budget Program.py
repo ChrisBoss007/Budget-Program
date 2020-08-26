@@ -36,7 +36,7 @@ def PageOpen():
             print(lineList)
             password2 = lineList[1]
             print(password2)
-
+            #Change the password value to just the number so that you can say if this =-= that, get did of it
 
 
 
