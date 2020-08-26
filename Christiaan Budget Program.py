@@ -29,11 +29,11 @@ def PageOpen():
         UserName = tk.Label(Window3, text="Username:", font=('times', 15))
         UserName.place(x=100, y=0)
 
-        def write_File (name):
-            print(name)
-
-
-
+        def openfile():
+            username = UserEntry.get()
+            file = open(username, "rb")
+            file_content = file.read()
+            print(file_content)
 
 
 
@@ -70,7 +70,7 @@ def PageOpen():
         Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green")
         Startbtn.place(x=105, y=180)
 
-        Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: write_File(UserEntry), font=("times", 15), cursor="top_left_arrow", fg="green")
+        Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green")
         Nextbtn.place(x=105, y=65)
 
         Recoverbtn = tk.Button(Window3, text="Forgot Password?", cursor="top_left_arrow", fg="blue")
@@ -178,6 +178,7 @@ def PageOpen():
             file.close()
             return name
 
+
         #This is the password entry.
         PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var, show="*")
         PasswordEntry.insert(0, "")
@@ -218,6 +219,7 @@ def PageOpen():
 
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import filedialog
 import os as os
 root = tk.Tk()
 #Making the introduction window.

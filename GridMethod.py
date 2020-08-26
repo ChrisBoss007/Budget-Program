@@ -1,50 +1,50 @@
-# importing all files  from tkinter
-from tkinter import * 
-from tkinter import ttk 
+import clx.xms
+import requests
+
+client = clx.xms.Client(service_plan_id='9b87dfe9dd7d4529babc379cdedbf2f1', token='cd04b03a2b76466faa0101c537ed401b')
+
+create = clx.xms.api.MtBatchTextSmsCreate()
+create.sender = '447537404817'
+create.recipients = {'64224362039'}
+create.body = 'This is a test message from your Sinch account'
+
+try:
+  batch = client.create_batch(create)
+except (requests.exceptions.RequestException,
+  clx.xms.exceptions.ApiException) as ex:
+  print('Failed to communicate with XMS: %s' % str(ex))
+
+import time
+from time import sleep 
+from sinchsms import SinchSMS 
   
-# import only asksaveasfile from filedialog 
-# which is used to save file in any extension 
-from tkinter.filedialog import asksaveasfile 
+# function for sending SMS 
+def sendSMS(): 
   
-root = Tk() 
-root.geometry('200x150') 
+    # enter all the details 
+    # get app_key and app_secret by registering 
+    # a app on sinchSMS 
+    number = 'your_mobile_number'
+    app_key = 'your_app_key'
+    app_secret = 'your_app_secret'
   
-# function to call when user press 
-# the save button, a filedialog will 
-# open and ask to save file 
-def save(): 
-    files = [('All Files', '*.*'),  
-             ('Python Files', '*.py'), 
-             ('Text Document', '*.txt')] 
-    file = asksaveasfile(filetypes = files, defaultextension = files) 
+    # enter the message to be sent 
+    message = 'Hello Message!!!'
   
-btn = ttk.Button(root, text = 'Save', command = lambda : save()) 
-btn.pack(side = TOP, pady = 20) 
+    client = SinchSMS(app_key, app_secret) 
+    print("Sending '%s' to %s" % (message, number)) 
   
-
-
-# importing tkinter and tkinter.ttk
-# and all their functions and classes
-from tkinter import *
-from tkinter.ttk import *
-
-# importing askopenfile function
-# from class filedialog
-from tkinter.filedialog import askopenfile
-
-root = Tk()
-root.geometry('200x100')
-
-# This function will be used to open
-# file in read mode and only Python files
-# will be opened
-def open_file():
-    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.py')])
-    if file is not None:
-        content = file.read()
-        print(content)
-
-btn = Button(root, text ='Open', command = lambda:open_file())
-btn.pack(side = TOP, pady = 10)
-
-mainloop()
+    response = client.send_message(number, message) 
+    message_id = response['messageId'] 
+    response = client.check_status(message_id) 
+  
+    # keep trying unless the status retured is Successful 
+    while response['status'] != 'Successful': 
+        print(response['status']) 
+        time.sleep(1) 
+        response = client.check_status(message_id) 
+  
+    print(response['status']) 
+  
+if __name__ == "__main__": 
+    sendSMS()
