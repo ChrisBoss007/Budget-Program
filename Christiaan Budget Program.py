@@ -61,16 +61,29 @@ def PageOpen():
         PasswordEntryt.bind("<Button-1>", some_callback)
         PasswordEntryt.place(x=62, y=140)
 
+
+
+
+
         def Program():
             Window3.withdraw()
             Window4 = tk.Tk()
             Window4.title("Budget Program")
-            Window4.geometry("300x270")
+            Window4.geometry("400x400")
             windowWidth = Window4.winfo_reqwidth()
             windowHeight = Window4.winfo_reqheight()
             positionRight = int(Window4.winfo_screenwidth() / 2 - windowWidth / 2)
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
+
+            #Impoert excel and work through that.
+
+
+
+
+
+
+
 
         Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green", state=tk.DISABLED)
         Startbtn.place(x=105, y=180)
@@ -225,7 +238,7 @@ def PageOpen():
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
-import os as os
+
 root = tk.Tk()
 #Making the introduction window.
 root.title("Welcome to Budget calculator")
