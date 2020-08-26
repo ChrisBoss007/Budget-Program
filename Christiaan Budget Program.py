@@ -22,24 +22,26 @@ def PageOpen():
         positionDown = int(Window3.winfo_screenheight() / 2 - windowHeight / 2)
         Window3.geometry("+{}+{}".format(positionRight, positionDown))
 
-
-
-
-
         UserName = tk.Label(Window3, text="Username:", font=('times', 15))
         UserName.place(x=100, y=0)
-
+        #This function will search for a text file with the same name as the input the user inputed, it will then check if the passowrd typed in is the same as the one that is on the text file, if it is the same it will grante accses and make the log on button useable, if not it will print error
         def openfile():
             username = UserEntry.get()
+            passwordt = PasswordEntryt.get()
             file = open(username, "r")
             lineList = [line.rstrip('\n') for line in open(username)]
             print(lineList)
             password2 = lineList[1]
             print(password2)
-            #Change the password value to just the number so that you can say if this =-= that, get did of it
-
-
-
+            if passwordt == password2:
+                tk.messagebox.showinfo("Acepted", "Password acepted")
+                if (Startbtn['state'] == tk.NORMAL):
+                    Startbtn['state'] = tk.DISABLED
+                else:
+                    Startbtn['state'] = tk.NORMAL
+            else:
+                tk.messagebox.showinfo("Error", "Username or Password is incorect")
+        #This is all the login entrys.
         UserEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13))
         UserEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -70,7 +72,7 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
-        Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green")
+        Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green", state=tk.DISABLED)
         Startbtn.place(x=105, y=180)
 
         Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green")
@@ -169,7 +171,7 @@ def PageOpen():
             user_Input = text_File.get()
             file.write("Username: " + user_Input)
             file.write("\n")
-            file.write("Password: " + password)
+            file.write(password)
             file.write("\n")
             file.write("FistName: " + firstname)
             file.write("\n")
