@@ -76,10 +76,6 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
-            #Impoert excel and work through that.
-
-
-
 
 
 
@@ -238,7 +234,7 @@ def PageOpen():
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
-
+from openpyxl import Workbook
 root = tk.Tk()
 #Making the introduction window.
 root.title("Welcome to Budget calculator")
