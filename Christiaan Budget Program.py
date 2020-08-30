@@ -76,8 +76,23 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
+            JobbEntry = tk.Entry(Window4, cursor="Cross")
+            JobbEntry.insert(0, "Type your text here!")
+            def some_callback(event):
+                JobbEntry.delete(0, "end")
+                return None
+            JobbEntry.bind("<Button-1>", some_callback)
+            JobbEntry.grid(row=0, column=0)
 
+            def rows():
+                string_answer = JobbEntry.get()
+                lines = int(string_answer)
+                for x in range(lines):
+                    entry = tk.Entry(Window4)
+                    entry.grid(row=x + 5, column=0)
 
+            testbtn = tk.Button(Window4, text="test", command=rows)
+            testbtn.grid(row=14, column=1)
 
 
 
@@ -191,7 +206,7 @@ def PageOpen():
             file.write("Phone number: " + phonenumber)
             file.close()
             return name, password
-
+   
 
         #This is the password entry.
         PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var, show="*")
