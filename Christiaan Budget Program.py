@@ -69,30 +69,166 @@ def PageOpen():
             Window3.withdraw()
             Window4 = tk.Tk()
             Window4.title("Budget Program")
-            Window4.geometry("400x400")
+            Window4.geometry("700x400")
             windowWidth = Window4.winfo_reqwidth()
             windowHeight = Window4.winfo_reqheight()
             positionRight = int(Window4.winfo_screenwidth() / 2 - windowWidth / 2)
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
-            JobbEntry = tk.Entry(Window4, cursor="Cross")
-            JobbEntry.insert(0, "Type your text here!")
-            def some_callback(event):
-                JobbEntry.delete(0, "end")
-                return None
-            JobbEntry.bind("<Button-1>", some_callback)
-            JobbEntry.grid(row=0, column=0)
+            class App(object):
+                def new_row(self):
+                    # Create widgets
+                    new_entry = tk.Entry(Window4, width=15)
+                    name = new_entry.insert(0, "Name of income")
 
-            def rows():
-                string_answer = JobbEntry.get()
-                lines = int(string_answer)
-                for x in range(lines):
-                    entry = tk.Entry(Window4)
-                    entry.grid(row=x + 5, column=0)
+                    print(name)
 
-            testbtn = tk.Button(Window4, text="test", command=rows)
-            testbtn.grid(row=14, column=1)
+
+                    new_entry2 = tk.Entry(Window4, width=8)
+                    new_entry2.insert(0, "Amount")
+
+                    rate = OptionList = [
+                    "Hourly",
+                    "Daily",
+                    "Weekly",
+                    "Monthly"
+                    ]
+                    variable = tk.StringVar(Window4)
+                    variable.set(OptionList[0])
+
+                    opt = tk.OptionMenu(Window4, variable, *OptionList)
+                    opt.config(width=5, font=('Helvetica', 6))
+
+                    print(rate)
+
+                    #Get it to save the value that the user inserted for thier rate of payment
+
+
+
+
+
+
+
+                    # Put widgets in grid
+                    self.num_rows += 1
+                    self.num_rows2 += 1
+                    self.num_rows3 += 1
+
+                    opt.grid(column=4, row=self.num_rows3)
+                    opt.bind("<Button-1>")
+
+                    entrys = []
+
+
+                    new_entry.grid(column=0, row=self.num_rows)
+                    def some_callback(event):
+                        new_entry.delete(0, "end")
+                        return None
+                    new_entry.bind("<Button-1>", some_callback)
+
+                    new_entry2.grid(column=2, row=self.num_rows2)
+                    def some_callback(event):
+                        new_entry2.delete(0, "end")
+                        return None
+                    new_entry2.bind("<Button-1>", some_callback)
+
+
+                    entrys.append(new_entry)
+
+
+
+
+                def __init__(self):
+                    self.num_rows = 1
+                    self.num_rows2 = 1
+                    self.num_rows3 = 1
+                    createRow_button = tk.Button(
+                            Window4, text='Add income row', command=self.new_row)
+                    createRow_button.place(x=240, y=0)
+
+                    print()
+
+
+
+            app = App()
+
+            class App(object):
+                def new_row2(self):
+                    # Create widgets
+                    new_entry2 = tk.Entry(Window4, width=15)
+                    name2 = new_entry2.insert(0, "Name of income")
+
+                    print(name2)
+
+
+                    new_entry3 = tk.Entry(Window4, width=8)
+                    new_entry3.insert(0, "Amount")
+
+                    rate2 = OptionList2 = [
+                    "Hourly",
+                    "Daily",
+                    "Weekly",
+                    "Monthly"
+                    ]
+                    variable = tk.StringVar(Window4)
+                    variable.set(OptionList2[0])
+
+                    opt2 = tk.OptionMenu(Window4, variable, *OptionList2)
+                    opt2.config(width=5, font=('Helvetica', 6))
+
+                    print(rate2)
+
+                    #Get it to save the value that the user inserted for thier rate of payment
+
+
+
+
+
+
+
+                    # Put widgets in grid
+                    self.num_rows += 1
+                    self.num_rows2 += 1
+                    self.num_rows3 += 1
+
+                    opt2.grid(column=8, row=self.num_rows3)
+                    opt2.bind("<Button-1>")
+
+
+
+
+                    new_entry2.grid(column=3, row=self.num_rows)
+                    def some_callback(event):
+                        new_entry2.delete(0, "end")
+                        return None
+                    new_entry2.bind("<Button-1>", some_callback)
+
+                    new_entry3.grid(column=5, row=self.num_rows2)
+                    def some_callback(event):
+                        new_entry3.delete(0, "end")
+                        return None
+                    new_entry3.bind("<Button-1>", some_callback)
+
+
+
+
+
+
+                def __init__(self):
+                    self.num_rows = 1
+                    self.num_rows2 = 1
+                    self.num_rows3 = 1
+                    createRow_button = tk.Button(
+                            Window4, text='Add income row', command=self.new_row2)
+                    createRow_button.place(x=440, y=0)
+
+                    print()
+
+
+
+            app = App()
+
 
 
 
