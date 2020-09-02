@@ -153,17 +153,18 @@ def PageOpen():
 
             app = App()
 
+            Exframe = tk.Frame(Window4).grid(row=0, column=10)
             class App(object):
                 def new_row2(self):
                     # Create widgets
-                    new_entry2 = tk.Entry(Window4, width=15)
-                    name2 = new_entry2.insert(0, "Name of income")
+                    new_entry3 = tk.Entry(Exframe, width=15)
+                    name2 = new_entry3.insert(0, "Name of income")
 
                     print(name2)
 
 
-                    new_entry3 = tk.Entry(Window4, width=8)
-                    new_entry3.insert(0, "Amount")
+                    new_entry4 = tk.Entry(Exframe, width=8)
+                    new_entry4.insert(0, "Amount")
 
                     rate2 = OptionList2 = [
                     "Hourly",
@@ -174,7 +175,7 @@ def PageOpen():
                     variable = tk.StringVar(Window4)
                     variable.set(OptionList2[0])
 
-                    opt2 = tk.OptionMenu(Window4, variable, *OptionList2)
+                    opt2 = tk.OptionMenu(Exframe, variable, *OptionList2)
                     opt2.config(width=5, font=('Helvetica', 6))
 
                     print(rate2)
@@ -192,23 +193,23 @@ def PageOpen():
                     self.num_rows2 += 1
                     self.num_rows3 += 1
 
-                    opt2.grid(column=8, row=self.num_rows3)
+                    opt2.grid(column=7, row=self.num_rows3)
                     opt2.bind("<Button-1>")
 
 
 
 
-                    new_entry2.grid(column=3, row=self.num_rows)
-                    def some_callback(event):
-                        new_entry2.delete(0, "end")
-                        return None
-                    new_entry2.bind("<Button-1>", some_callback)
-
-                    new_entry3.grid(column=5, row=self.num_rows2)
+                    new_entry3.grid(column=6, row=self.num_rows)
                     def some_callback(event):
                         new_entry3.delete(0, "end")
                         return None
                     new_entry3.bind("<Button-1>", some_callback)
+
+                    new_entry4.grid(column=5, row=self.num_rows2)
+                    def some_callback(event):
+                        new_entry4.delete(0, "end")
+                        return None
+                    new_entry4.bind("<Button-1>", some_callback)
 
 
 
@@ -219,9 +220,9 @@ def PageOpen():
                     self.num_rows = 1
                     self.num_rows2 = 1
                     self.num_rows3 = 1
-                    createRow_button = tk.Button(
+                    createRow_button2 = tk.Button(
                             Window4, text='Add income row', command=self.new_row2)
-                    createRow_button.place(x=440, y=0)
+                    createRow_button2.place(x=440, y=0)
 
                     print()
 
