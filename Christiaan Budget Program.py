@@ -76,6 +76,9 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
+            Window4.grid_rowconfigure(100, weight=1)
+            Window4.grid_columnconfigure(2, weight=1)
+
             class App(object):
                 def new_row(self):
                     # Create widgets
@@ -115,7 +118,7 @@ def PageOpen():
                     self.num_rows2 += 1
                     self.num_rows3 += 1
 
-                    opt.grid(column=4, row=self.num_rows3)
+                    opt.grid(column=3, row=self.num_rows3)
                     opt.bind("<Button-1>")
 
                     entrys = []
@@ -127,7 +130,7 @@ def PageOpen():
                         return None
                     new_entry.bind("<Button-1>", some_callback)
 
-                    new_entry2.grid(column=2, row=self.num_rows2)
+                    new_entry2.grid(column=1, row=self.num_rows2)
                     def some_callback(event):
                         new_entry2.delete(0, "end")
                         return None
@@ -153,17 +156,16 @@ def PageOpen():
 
             app = App()
 
-            Exframe = tk.Frame(Window4).grid(row=0, column=10)
-            class App(object):
+            class App2(object):
                 def new_row2(self):
                     # Create widgets
-                    new_entry3 = tk.Entry(Exframe, width=15)
+                    new_entry3 = tk.Entry(Window4, width=15)
                     name2 = new_entry3.insert(0, "Name of income")
 
                     print(name2)
 
 
-                    new_entry4 = tk.Entry(Exframe, width=8)
+                    new_entry4 = tk.Entry(Window4, width=8)
                     new_entry4.insert(0, "Amount")
 
                     rate2 = OptionList2 = [
@@ -175,7 +177,7 @@ def PageOpen():
                     variable = tk.StringVar(Window4)
                     variable.set(OptionList2[0])
 
-                    opt2 = tk.OptionMenu(Exframe, variable, *OptionList2)
+                    opt2 = tk.OptionMenu(Window4, variable, *OptionList2)
                     opt2.config(width=5, font=('Helvetica', 6))
 
                     print(rate2)
@@ -199,13 +201,13 @@ def PageOpen():
 
 
 
-                    new_entry3.grid(column=6, row=self.num_rows)
+                    new_entry3.grid(column=5, row=self.num_rows)
                     def some_callback(event):
                         new_entry3.delete(0, "end")
                         return None
                     new_entry3.bind("<Button-1>", some_callback)
 
-                    new_entry4.grid(column=5, row=self.num_rows2)
+                    new_entry4.grid(column=6, row=self.num_rows2)
                     def some_callback(event):
                         new_entry4.delete(0, "end")
                         return None
@@ -220,6 +222,7 @@ def PageOpen():
                     self.num_rows = 1
                     self.num_rows2 = 1
                     self.num_rows3 = 1
+
                     createRow_button2 = tk.Button(
                             Window4, text='Add income row', command=self.new_row2)
                     createRow_button2.place(x=440, y=0)
@@ -228,7 +231,7 @@ def PageOpen():
 
 
 
-            app = App()
+            app = App2()
 
 
 
