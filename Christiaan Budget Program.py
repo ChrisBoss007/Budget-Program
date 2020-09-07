@@ -278,8 +278,10 @@ def PageOpen():
         PhoneLable = tk.Label(Window3, text="Contact Number:", font=('times', 13)).grid(row=5, column=0, sticky="w")
         UserNameLable = tk.Label(Window3, text="Username:", font=('times', 15)).grid(row=9, column=0)
         PasswordLable = tk.Label(Window3, text="Password:", font=('times', 15)).grid(row=12, column=0)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        #Entry functions to save users information/
+        # For this entry the user is asked to enter a 'name' of their choice into a entry, witch will later be saved.
+        # This entry saves the users input to 'NameEntry', it also display the sentence 'type your text here' and the function below -[line 392] will clear the entry once the user has clicked on it.
         NameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
         NameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -288,6 +290,8 @@ def PageOpen():
         NameEntry.bind("<Button-1>", some_callback)
         NameEntry.grid(row=2, column=0, padx=95)
         #------------------------------------------------------------------------------
+        # For this entry the user is asked to enter a 'surname' of their choice into a entry, witch will later be saved.
+        # This entry saves the users input to 'SurNameEntry', it also display the sentence 'type your text here' and the function below -[line 392] will clear the entry once the user has clicked on it.
         SurNameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
         SurNameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -296,6 +300,8 @@ def PageOpen():
         SurNameEntry.bind("<Button-1>", some_callback)
         SurNameEntry.grid(row=3, column=0, padx=95)
         #----------------------------------------------------------------------------------
+        # For this entry the user is asked to enter a 'email' of their choice into a entry, witch will later be saved.
+        # This entry saves the users input to 'EmailEntry', it also display the sentence 'type your text here' and the function below -[line 303] will clear the entry once the user has clicked on it.
         EmailEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
         EmailEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -304,6 +310,8 @@ def PageOpen():
         EmailEntry.bind("<Button-1>", some_callback)
         EmailEntry.grid(row=4, column=0, padx=95)
         #------------------------------------------------------------------------------------
+        # For this entry the user is asked to enter a 'phone number' of their choice into a entry, witch will later be saved.
+        # This entry saves the users input to 'PhoneEntry', it also display the sentence 'type your text here' and the function below -[line 311] will clear the entry once the user has clicked on it.
         PhoneEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
         PhoneEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -311,7 +319,9 @@ def PageOpen():
             return None
         PhoneEntry.bind("<Button-1>", some_callback)
         PhoneEntry.grid(row=5, column=0, padx=95)
-        #This is the username entry and will save a text file with the username as the name of the file.
+        #------------------------------------------------------------------------------------
+        # For this entry the user is asked to enter a username of their choice into a entry, witch will later be saved.
+        # This entry saves the users input to 'name_var', by setting the 'textvariable' to a unique variable, this entry also display the sentence 'type your text here' and the function below -[line 318] will clear the entry once the user has clicked on it.
         UserNameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = name_var)
         UserNameEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -319,23 +329,23 @@ def PageOpen():
             return None
         UserNameEntry.bind("<Button-1>", some_callback)
         UserNameEntry.grid(row=10, column=0, padx=95)
-        #This function will make a new file and write all the nessacary inforamtion to make thier account.
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        # Once the user is happy with their username and password, they can click submit witch will run this function, witch will save all their information on this PC.
+        # This function 'gets ()' all the values from all the entry's, and then opens a new text file and writes all the information in that file, effectively saving all the users information when the 'Submit' -[line 367] button is clicked.
         def write_File (text_File, passw_var):
-
-            #This is where i get all the values of the entrys.
-            name=UserNameEntry.get()
-            password=PasswordEntry.get()
-            email=EmailEntry.get()
-            phonenumber=PhoneEntry.get()
-            firstname=NameEntry.get()
-            surname=SurNameEntry.get()
-            #This checks that the password is being saved.
-            print("The name is : " + name)
-            print("The password is : " + password)
-
+            # This is where it finds and gets all the values of the entry's, and saves them as a unique variable.
+            name = UserNameEntry.get()
+            password = PasswordEntry.get()
+            email = EmailEntry.get()
+            phonenumber = PhoneEntry.get()
+            firstname = NameEntry.get()
+            surname = SurNameEntry.get()
+            #------------------------------------------------------------------------------------------------------------------------------------------------------
             name_var.set("")
             passw_var.set("")
-            #This writes all the values into the file then closes it.
+            #------------------------------------------------------------------------------------------------------------------------------------------------------
+            # This opens a new text file and writes all the information into it, using the unique variables made above. -[line 326-331]
             file = open(name, "a")
             user_Input = text_File.get()
             file.write("Username: " + user_Input)
@@ -351,9 +361,10 @@ def PageOpen():
             file.write("Phone number: " + phonenumber)
             file.close()
             return name, password
-   
+            #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        #This is the password entry.
+        # This is an entry where the user is asked to enter a password of their choice.
+        # The password will be saved as 'pass_var' by setting it 'textvarible' to a variable of my choice, this entry display the sentence 'type your text here' and the function below -[line 360] will clear the entry once the user has clicked on it.
         PasswordEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = passw_var, show="*")
         PasswordEntry.insert(0, "")
         def some_callback(event):
@@ -361,16 +372,19 @@ def PageOpen():
             return None
         PasswordEntry.bind("<Button-1>", some_callback)
         PasswordEntry.grid(row=13, column=0, padx=95)
-
-        #Button will save their password and username.
-        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(UserNameEntry, passw_var)) #THis was Password entry but i changed it to Username entry not sure what that does
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
+        # Once the user is happy with their chosen password and username they can click this button witch will save their chosen password and username as a text file on this PC.
+        # If this button is clicked it will run the function 'write_File' -[line 323].
+        Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(UserNameEntry, passw_var)) # -[line 323].
         Submitbtn.grid(row=17, column=0)
-
-        #Button will run the login function once clicked.
-        Contuinebtn = tk.Button(Window3, text="Contuine", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue", command=login)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
+        # If the user is finished registering they can move on ti the login screen by clicking this button.
+        # This button will run the function 'login' -[line 15].
+        Contuinebtn = tk.Button(Window3, text="Contuine", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue", command=login) # -[line 15].
         Contuinebtn.grid(row=19, column=0)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    # This code is part of the second window, witch will ask the user to log in (if they have a account) or register (if they are new and dont have an account), as well as a help button exsplaing what to do.
+    # This code is part of the second window, witch will ask the user to log in (if they have a account) or register (if they are new and dont have an account), as well as a help button explaining what to do.
     # If the users doesnt have an account the will be asked to register, and when this button is clicked it will take them to the register slide.
     # For this button i set the 'command' to 'register' witch will run the (register) function. -[line 255]
     registerbtn = tk.Button(Window2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green") #-[line 255]
