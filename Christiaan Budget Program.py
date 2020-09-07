@@ -1,4 +1,5 @@
-#This function will open the second window after the introduction window.
+#When the 'Yes' button is clicked on the first window this function will run.
+#It will destroy the first slide and open a new window (Window2) and set the dimentions and other details for the slide are written underneath:
 def PageOpen():
     intro_slide.destroy()
     Window2 = tk.Tk()
@@ -9,8 +10,8 @@ def PageOpen():
     positionRight = int(Window2.winfo_screenwidth() / 2 - windowWidth / 2)
     positionDown = int(Window2.winfo_screenheight() / 2 - windowHeight / 2)
     Window2.geometry("+{}+{}".format(positionRight, positionDown))
+#--------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #If the user does have an account, this function will close the old window and open a login window once the user has clicked the login button.
     def login():
         Window2.withdraw()
         Window3 = tk.Tk()
@@ -76,8 +77,6 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
-            Window4.grid_rowconfigure(100, weight=1)
-            Window4.grid_columnconfigure(2, weight=1)
 
             class App(object):
                 def new_row(self):
@@ -105,6 +104,8 @@ def PageOpen():
 
                     print(rate)
 
+                    blank = tk.Label(Window4, text="  ")
+
                     #Get it to save the value that the user inserted for thier rate of payment
 
 
@@ -117,6 +118,7 @@ def PageOpen():
                     self.num_rows += 1
                     self.num_rows2 += 1
                     self.num_rows3 += 1
+                    self.num_rows4 += 1
 
                     opt.grid(column=3, row=self.num_rows3)
                     opt.bind("<Button-1>")
@@ -139,6 +141,8 @@ def PageOpen():
 
                     entrys.append(new_entry)
 
+                    blank.grid(column=6, row=self.num_rows4, padx=160)
+
 
 
 
@@ -146,6 +150,7 @@ def PageOpen():
                     self.num_rows = 1
                     self.num_rows2 = 1
                     self.num_rows3 = 1
+                    self.num_rows4 = 1
                     createRow_button = tk.Button(
                             Window4, text='Add income row', command=self.new_row)
                     createRow_button.place(x=240, y=0)
@@ -195,19 +200,19 @@ def PageOpen():
                     self.num_rows2 += 1
                     self.num_rows3 += 1
 
-                    opt2.grid(column=7, row=self.num_rows3)
+                    opt2.grid(column=9, row=self.num_rows3)
                     opt2.bind("<Button-1>")
 
 
 
 
-                    new_entry3.grid(column=5, row=self.num_rows)
+                    new_entry3.grid(column=7, row=self.num_rows)
                     def some_callback(event):
                         new_entry3.delete(0, "end")
                         return None
                     new_entry3.bind("<Button-1>", some_callback)
 
-                    new_entry4.grid(column=6, row=self.num_rows2)
+                    new_entry4.grid(column=8, row=self.num_rows2)
                     def some_callback(event):
                         new_entry4.delete(0, "end")
                         return None
@@ -365,33 +370,38 @@ def PageOpen():
         Contuinebtn = tk.Button(Window3, text="Contuine", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue", command=login)
         Contuinebtn.grid(row=19, column=0)
 
-
-    #This is part of the pageopen function and will ask the user to register or login.
-    #Button will run the register function once clicked.
-    registerbtn = tk.Button(Window2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green")
+    # This code is part of the second window, witch will ask the user to log in (if they have a account) or register (if they are new and dont have an account), as well as a help button exsplaing what to do.
+    # If the users doesnt have an account the will be asked to register, and when this button is clicked it will take them to the register slide.
+    # For this button i set the 'command' to 'register' witch will run the (register) function. -[line 255]
+    registerbtn = tk.Button(Window2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green") #-[line 255]
     registerbtn.place(x=50, y=40)
-
-    #Button will run the login function once clicked.
-    loginbtn = tk.Button(Window2, text="Login", height=1, width=7, command=login, font=("times", 15), cursor="top_left_arrow", fg="blue")
+    #------------------------------------------------------------------------------------------------------------------------------------------------------
+    # If the user has an account they can 'login', witch will take them stright to the login window where they will be asked to enter their username and password.
+    # For this button is set the 'command'  to 'login', witch will run the function (login)-[line 15].
+    loginbtn = tk.Button(Window2, text="Login", height=1, width=7, command=login, font=("times", 15), cursor="top_left_arrow", fg="blue") #-[line 15]
     loginbtn.place(x=155, y=40)
-
-    #A Label informing the user what each button does.
+    #------------------------------------------------------------------------------------------------------------------------------------------------------
+    # This label asks the user if they have a account, the user can select 'login' if they do and 'register' if they do not.
     Label1 = tk.Label(Window2, text="Do you have an account?", bg='white', relief="sunken", borderwidth = 3, font=('times', 13))
     Label1.place(x=60, y=0)
-    #This function will run to pop up a mesage box if the user needs helps
-    def onClick():
+    #------------------------------------------------------------------------------------------------------------------------------------------------------
+    # This function will create a pop up a 'message box' using 'messagebox' from tkinter, in case the users doesnt understand what to do.
+    def Help():
         tk.messagebox.showinfo("Help", "If you dont already have an account register to make one, if you do you can go ahead and login.")
-    #This button runs the function to show a help message.
-    Helpbutton = tk.Button(Window2, text="?", command=onClick, fg="red", cursor="question_arrow")
+    #------------------------------------------------------------------------------------------------------------------------------------------------------
+    # If the user is unsure what to do they ca click on this button witch will bring up a pop up message explaining what to do on this window.
+    # For this button is set the 'command'  to 'Help', witch will run the function (Help)-[line 394].
+    Helpbutton = tk.Button(Window2, text="?", command=Help, fg="red", cursor="question_arrow")
     Helpbutton.place(x=20, y=20)
+    #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+# All the necessary imports were written here:
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import filedialog
-from openpyxl import Workbook
+#--------------------------------------------------------------------------------------
+# This is the first window that greats the user and briefly introduces them to the program.
+# The first part is the dimensions and title and other details below:
 root = tk.Tk()
-#Making the introduction window.
 root.title("Welcome to Budget calculator")
 root.geometry("380x330")
 windowWidth = root.winfo_reqwidth()
@@ -399,38 +409,42 @@ windowHeight = root.winfo_reqheight()
 positionRight = int(root.winfo_screenwidth() / 2 - windowWidth / 2)
 positionDown = int(root.winfo_screenheight() / 2 - windowHeight / 2)
 root.geometry("+{}+{}".format(positionRight, positionDown))
-
-#Making the intro message that will introduce the user to the program.
+#-------------------------------------------------------------------------------------
+# Making a introduction message that will introduce the user to the program.
 intro_slide = root
 intro_message1 = "Welcome! \n To budget calculator"
-intro_msg = tk.Message(root, text = intro_message1, justify="center")
+intro_msg = tk.Message(root, text=intro_message1, justify="center")
 intro_msg.config(fg="Yellow", bg="Black", font=('times', 20, 'italic'))
 intro_msg.pack()
-
+#--------------------------------------------------------------------------------------
+# This is the second label further explaining what the program does.
 intro_message2 = "Here you can deposit or withdraw money and see your progress towards your goals, and insert your income and expenses and we will draw up a plan to solve your finance situation."
-intro_msg2 = tk.Message(root, text = intro_message2)
-intro_msg2.config(bg='white', relief="sunken", borderwidth = 3, font=('times', 17))
+intro_msg2 = tk.Message(root, text=intro_message2)
+intro_msg2.config(bg='white', relief="sunken", borderwidth=3, font=('times', 17))
 intro_msg2.pack()
-
+#--------------------------------------------------------------------------------------
+# A label asking the user if they are done reading the introduction message and if they are ready to start.
 intro_label = tk.Label(root, text="Are you ready to start?", font=("times", 15))
 intro_label.pack()
-
+#--------------------------------------------------------------------------------------
+# Creating a frame for the first window.
 frame = tk.Frame(root)
 frame.pack()
-
-#This button is the exit button incase the user acsednetly opened the program, and will quit the program when clicked.
+#--------------------------------------------------------------------------------------
+# This button is the exit button in case the user accidentally opened the program, once clicked the program will exit.
+# For this button i set the 'command' to 'quit' in order to quit when clicked.
 intro_button1 = tk.Button(frame,
                   text="NO",
                   fg="red",
                   command=quit)
 intro_button1.pack(side=tk.RIGHT)
-
-#This will run the function (page open) that will open the second window.
+#--------------------------------------------------------------------------------------
+# Once the user has finished reading they can start the program by clicking on 'YES', this will run the (PageOpen) function - [line 3].
+# For this button i set the 'command' to 'PageOpen' witch means that when the user clicks on this button it will run the function PageOpen.
 intro_button2 = tk.Button(frame,
                          text="YES",
                          fg="green",
-                         command=PageOpen)
-
+                         command=PageOpen)  #-(line 3)
 intro_button2.pack(side=tk.LEFT)
-
+#--------------------------------------------------------------------------------------
 root.mainloop()
