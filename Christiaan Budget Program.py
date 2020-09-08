@@ -1,5 +1,5 @@
 #When the 'Yes' button is clicked on the first window this function will run.
-#It will destroy the first slide and open a new window (Window2) and set the dimentions and other details for the slide are written underneath:
+#It will destroy the first slide and open a new window (Window2) and set the dimensions and other details for the slide are written underneath:
 def PageOpen():
     intro_slide.destroy()
     Window2 = tk.Tk()
@@ -12,6 +12,7 @@ def PageOpen():
     Window2.geometry("+{}+{}".format(positionRight, positionDown))
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+    # If the user has a existing account they can login in by pressing the 'login' button -[line  on window 2, witch will run this function.
     def login():
         Window2.withdraw()
         Window3 = tk.Tk()
@@ -243,16 +244,22 @@ def PageOpen():
 
         Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green", state=tk.DISABLED)
         Startbtn.place(x=105, y=180)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green")
         Nextbtn.place(x=105, y=65)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         Recoverbtn = tk.Button(Window3, text="Forgot Password?", cursor="top_left_arrow", fg="blue")
         Recoverbtn.place(x=170, y=230)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-    #If the user doesnt have an account they button register will open this window and will close the old window, and open the regiter window where they can register their account.
+    # If the user doesnt have an account they can click 'register' on window 2 -[line 400], witch will run this function.
+    # This function will destroy the last window and open a new window, 'window3'.
     def register():
+        # This is were is set the dimensions for the 'register' slide.
         Window2.withdraw()
         Window3 = tk.Tk()
         Window3.title("Sign Up")
@@ -262,16 +269,17 @@ def PageOpen():
         positionRight = int(Window3.winfo_screenwidth() / 2 - windowWidth / 2)
         positionDown = int(Window3.winfo_screenheight() / 2 - windowHeight / 2)
         Window3.geometry("+{}+{}".format(positionRight, positionDown))
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        name_var=tk.StringVar()
-        passw_var=tk.StringVar()
+        name_var = tk.StringVar()
+        passw_var = tk.StringVar()
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-        #This is where the value of the users unsername and password is saved.
-        #A Label exsplaing what the user is supoes to do here.
+        # This is a meesage that explains what this slides perpouse is.
         IntroLabel = tk.Message(Window3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(columnspan=2)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        #Adding the labels that give information on what i want the user to type where.
+        # Below are a list of labels that inform the user what they should type in in the box next to the corresponding label.
         NameLabel = tk.Label(Window3, text="         First Name:", font=('times', 13)).grid(row=2, column=0, sticky="w")
         SurNameLabel = tk.Label(Window3, text="          Last Name:", font=('times', 13)).grid(row=3, column=0, sticky="w")
         EmailLabel = tk.Label(Window3, text="    Email Address:", font=('times', 13)).grid(row=4, column=0, sticky="w")
@@ -290,6 +298,7 @@ def PageOpen():
         NameEntry.bind("<Button-1>", some_callback)
         NameEntry.grid(row=2, column=0, padx=95)
         #------------------------------------------------------------------------------
+
         # For this entry the user is asked to enter a 'surname' of their choice into a entry, witch will later be saved.
         # This entry saves the users input to 'SurNameEntry', it also display the sentence 'type your text here' and the function below -[line 392] will clear the entry once the user has clicked on it.
         SurNameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
@@ -300,6 +309,7 @@ def PageOpen():
         SurNameEntry.bind("<Button-1>", some_callback)
         SurNameEntry.grid(row=3, column=0, padx=95)
         #----------------------------------------------------------------------------------
+
         # For this entry the user is asked to enter a 'email' of their choice into a entry, witch will later be saved.
         # This entry saves the users input to 'EmailEntry', it also display the sentence 'type your text here' and the function below -[line 303] will clear the entry once the user has clicked on it.
         EmailEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
@@ -310,6 +320,7 @@ def PageOpen():
         EmailEntry.bind("<Button-1>", some_callback)
         EmailEntry.grid(row=4, column=0, padx=95)
         #------------------------------------------------------------------------------------
+
         # For this entry the user is asked to enter a 'phone number' of their choice into a entry, witch will later be saved.
         # This entry saves the users input to 'PhoneEntry', it also display the sentence 'type your text here' and the function below -[line 311] will clear the entry once the user has clicked on it.
         PhoneEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10))
@@ -320,6 +331,7 @@ def PageOpen():
         PhoneEntry.bind("<Button-1>", some_callback)
         PhoneEntry.grid(row=5, column=0, padx=95)
         #------------------------------------------------------------------------------------
+
         # For this entry the user is asked to enter a username of their choice into a entry, witch will later be saved.
         # This entry saves the users input to 'name_var', by setting the 'textvariable' to a unique variable, this entry also display the sentence 'type your text here' and the function below -[line 318] will clear the entry once the user has clicked on it.
         UserNameEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 10), textvariable = name_var)
@@ -342,9 +354,11 @@ def PageOpen():
             firstname = NameEntry.get()
             surname = SurNameEntry.get()
             #------------------------------------------------------------------------------------------------------------------------------------------------------
+
             name_var.set("")
             passw_var.set("")
             #------------------------------------------------------------------------------------------------------------------------------------------------------
+
             # This opens a new text file and writes all the information into it, using the unique variables made above. -[line 326-331]
             file = open(name, "a")
             user_Input = text_File.get()
@@ -373,11 +387,13 @@ def PageOpen():
         PasswordEntry.bind("<Button-1>", some_callback)
         PasswordEntry.grid(row=13, column=0, padx=95)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
+
         # Once the user is happy with their chosen password and username they can click this button witch will save their chosen password and username as a text file on this PC.
         # If this button is clicked it will run the function 'write_File' -[line 323].
         Submitbtn = tk.Button(Window3, text="Submit", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="green", command=lambda: write_File(UserNameEntry, passw_var)) # -[line 323].
         Submitbtn.grid(row=17, column=0)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
+
         # If the user is finished registering they can move on ti the login screen by clicking this button.
         # This button will run the function 'login' -[line 15].
         Contuinebtn = tk.Button(Window3, text="Contuine", height=1, width=7, font=("times", 15), cursor="top_left_arrow", fg="blue", command=login) # -[line 15].
@@ -390,29 +406,35 @@ def PageOpen():
     registerbtn = tk.Button(Window2, text="Register", height=1, width=7, command=register, font=("times", 15), cursor="top_left_arrow", fg="green") #-[line 255]
     registerbtn.place(x=50, y=40)
     #------------------------------------------------------------------------------------------------------------------------------------------------------
+
     # If the user has an account they can 'login', witch will take them stright to the login window where they will be asked to enter their username and password.
     # For this button is set the 'command'  to 'login', witch will run the function (login)-[line 15].
     loginbtn = tk.Button(Window2, text="Login", height=1, width=7, command=login, font=("times", 15), cursor="top_left_arrow", fg="blue") #-[line 15]
     loginbtn.place(x=155, y=40)
     #------------------------------------------------------------------------------------------------------------------------------------------------------
+
     # This label asks the user if they have a account, the user can select 'login' if they do and 'register' if they do not.
     Label1 = tk.Label(Window2, text="Do you have an account?", bg='white', relief="sunken", borderwidth = 3, font=('times', 13))
     Label1.place(x=60, y=0)
     #------------------------------------------------------------------------------------------------------------------------------------------------------
+
     # This function will create a pop up a 'message box' using 'messagebox' from tkinter, in case the users doesnt understand what to do.
     def Help():
         tk.messagebox.showinfo("Help", "If you dont already have an account register to make one, if you do you can go ahead and login.")
     #------------------------------------------------------------------------------------------------------------------------------------------------------
+
     # If the user is unsure what to do they ca click on this button witch will bring up a pop up message explaining what to do on this window.
     # For this button is set the 'command'  to 'Help', witch will run the function (Help)-[line 394].
     Helpbutton = tk.Button(Window2, text="?", command=Help, fg="red", cursor="question_arrow")
     Helpbutton.place(x=20, y=20)
     #------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
 # All the necessary imports were written here:
 import tkinter as tk
 from tkinter import messagebox
 #--------------------------------------------------------------------------------------
+
 # This is the first window that greats the user and briefly introduces them to the program.
 # The first part is the dimensions and title and other details below:
 root = tk.Tk()
@@ -424,6 +446,7 @@ positionRight = int(root.winfo_screenwidth() / 2 - windowWidth / 2)
 positionDown = int(root.winfo_screenheight() / 2 - windowHeight / 2)
 root.geometry("+{}+{}".format(positionRight, positionDown))
 #-------------------------------------------------------------------------------------
+
 # Making a introduction message that will introduce the user to the program.
 intro_slide = root
 intro_message1 = "Welcome! \n To budget calculator"
@@ -431,20 +454,24 @@ intro_msg = tk.Message(root, text=intro_message1, justify="center")
 intro_msg.config(fg="Yellow", bg="Black", font=('times', 20, 'italic'))
 intro_msg.pack()
 #--------------------------------------------------------------------------------------
+
 # This is the second label further explaining what the program does.
 intro_message2 = "Here you can deposit or withdraw money and see your progress towards your goals, and insert your income and expenses and we will draw up a plan to solve your finance situation."
 intro_msg2 = tk.Message(root, text=intro_message2)
 intro_msg2.config(bg='white', relief="sunken", borderwidth=3, font=('times', 17))
 intro_msg2.pack()
 #--------------------------------------------------------------------------------------
+
 # A label asking the user if they are done reading the introduction message and if they are ready to start.
 intro_label = tk.Label(root, text="Are you ready to start?", font=("times", 15))
 intro_label.pack()
 #--------------------------------------------------------------------------------------
+
 # Creating a frame for the first window.
 frame = tk.Frame(root)
 frame.pack()
 #--------------------------------------------------------------------------------------
+
 # This button is the exit button in case the user accidentally opened the program, once clicked the program will exit.
 # For this button i set the 'command' to 'quit' in order to quit when clicked.
 intro_button1 = tk.Button(frame,
@@ -453,6 +480,7 @@ intro_button1 = tk.Button(frame,
                   command=quit)
 intro_button1.pack(side=tk.RIGHT)
 #--------------------------------------------------------------------------------------
+
 # Once the user has finished reading they can start the program by clicking on 'YES', this will run the (PageOpen) function - [line 3].
 # For this button i set the 'command' to 'PageOpen' witch means that when the user clicks on this button it will run the function PageOpen.
 intro_button2 = tk.Button(frame,
@@ -461,4 +489,5 @@ intro_button2 = tk.Button(frame,
                          command=PageOpen)  #-(line 3)
 intro_button2.pack(side=tk.LEFT)
 #--------------------------------------------------------------------------------------
+
 root.mainloop()
