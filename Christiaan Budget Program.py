@@ -3,8 +3,8 @@
 def PageOpen():
     intro_slide.destroy()
     Window2 = tk.Tk()
-    Window2.title("Budget")
-    Window2.geometry("300x270")
+    Window2.title("Account information")
+    Window2.geometry("300x100")
     windowWidth = Window2.winfo_reqwidth()
     windowHeight = Window2.winfo_reqheight()
     positionRight = int(Window2.winfo_screenwidth() / 2 - windowWidth / 2)
@@ -16,7 +16,7 @@ def PageOpen():
     def login():
         Window2.withdraw()
         Window3 = tk.Tk()
-        Window3.title("Sign Up")
+        Window3.title("Sign In")
         Window3.geometry("300x270")
         windowWidth = Window3.winfo_reqwidth()
         windowHeight = Window3.winfo_reqheight()
@@ -25,7 +25,7 @@ def PageOpen():
         Window3.geometry("+{}+{}".format(positionRight, positionDown))
 
         UserName = tk.Label(Window3, text="Username:", font=('times', 15))
-        UserName.place(x=100, y=0)
+        UserName.place(x=100, y=20)
         #This function will search for a text file with the same name as the input the user inputed, it will then check if the passowrd typed in is the same as the one that is on the text file, if it is the same it will grante accses and make the log on button useable, if not it will print error
         def openfile():
             username = UserEntry.get()
@@ -50,10 +50,10 @@ def PageOpen():
             UserEntry.delete(0, "end")
             return None
         UserEntry.bind("<Button-1>", some_callback)
-        UserEntry.place(x=62, y=30)
+        UserEntry.place(x=62, y=50)
 
         UserPassword = tk.Label(Window3, text="Password:", font=('times', 15))
-        UserPassword.place(x=105, y=110)
+        UserPassword.place(x=105, y=90)
 
         PasswordEntryt = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), show="*")
         PasswordEntryt.insert(0, "")
@@ -61,7 +61,7 @@ def PageOpen():
             PasswordEntryt.delete(0, "end")
             return None
         PasswordEntryt.bind("<Button-1>", some_callback)
-        PasswordEntryt.place(x=62, y=140)
+        PasswordEntryt.place(x=62, y=120)
 
 
 
@@ -242,13 +242,14 @@ def PageOpen():
 
 
 
+        #
         Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green", state=tk.DISABLED)
-        Startbtn.place(x=105, y=180)
+        Startbtn.place(x=160, y=180)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green")
-        Nextbtn.place(x=105, y=65)
+        Nextbtn.place(x=60, y=180)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -263,7 +264,7 @@ def PageOpen():
         Window2.withdraw()
         Window3 = tk.Tk()
         Window3.title("Sign Up")
-        Window3.geometry("450x320")
+        Window3.geometry("442x320")
         windowWidth = Window3.winfo_reqwidth()
         windowHeight = Window3.winfo_reqheight()
         positionRight = int(Window3.winfo_screenwidth() / 2 - windowWidth / 2)
