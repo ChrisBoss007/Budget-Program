@@ -24,18 +24,34 @@ def PageOpen():
         positionRight = int(Window3.winfo_screenwidth() / 2 - windowWidth / 2)
         positionDown = int(Window3.winfo_screenheight() / 2 - windowHeight / 2)
         Window3.geometry("+{}+{}".format(positionRight, positionDown))
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+        # This label informs the user what they should type in in the corresponding entry below. -[line 50]
         UserName = tk.Label(Window3, text="Username:", font=('times', 15))
         UserName.place(x=100, y=20)
-        #This function will search for a text file with the same name as the input the user inputed, it will then check if the passowrd typed in is the same as the one that is on the text file, if it is the same it will grante accses and make the log on button useable, if not it will print error
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
+
+        #This function will search for a text file with the same name as what ever the user typed in, it will then check if the password typed in is the same as the one that is on the text file,
+        # if it is the same it will grant access and make the log on button usable, if not it will print error.
         def openfile():
-            username = UserEntry.get()
-            passwordt = PasswordEntryt.get()
+            # This is where i 'get' the values of the entry where the user entered their information.
+            username = UserEntry.get() # -[line 54].
+            passwordt = PasswordEntryt.get() # -[line 65].
+            #--------------------------------------------------------------------------------------------------------------------------------------------------
+
+            # This is where i open the file with the same name as whatever the users entered or set as their username.
             file = open(username, "r")
             lineList = [line.rstrip('\n') for line in open(username)]
             print(lineList)
+            #--------------------------------------------------------------------------------------------------------------------------------------------------
+
+            # This is where it checks if the password that the user entered, matches the password set user the username that they have entered.
             password2 = lineList[1]
             print(password2)
+            #--------------------------------------------------------------------------------------------------------------------------------------------------
+
+            # If the user has entered the correct password they can move on to the program by clicking the 'Submit' button -[line 236].
+            # This code below will make the button that open the program avalibil to use, so they can only click the button (that takes them to the program) if their password is correct, if not this button will be unlclickeable.
             if passwordt == password2:
                 tk.messagebox.showinfo("Acepted", "Password acepted")
                 if (Startbtn['state'] == tk.NORMAL):
@@ -44,7 +60,10 @@ def PageOpen():
                     Startbtn['state'] = tk.NORMAL
             else:
                 tk.messagebox.showinfo("Error", "Username or Password is incorect")
-        #This is all the login entrys.
+             #--------------------------------------------------------------------------------------------------------------------------------------------------
+
+        # For this entry the user is asked to enter their 'username',
+        # This entry saves the users input to 'UserEntry', it also display the sentence 'type your text here' and the function below -[line 69] will clear the entry once the user has clicked on it.
         UserEntry = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13))
         UserEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -52,10 +71,15 @@ def PageOpen():
             return None
         UserEntry.bind("<Button-1>", some_callback)
         UserEntry.place(x=62, y=50)
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+        # This label informs the user what they should type in in the corresponding entry below. -[line 79]
         UserPassword = tk.Label(Window3, text="Password:", font=('times', 15))
         UserPassword.place(x=105, y=90)
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+        # For this entry the user is asked to enter their 'password',
+        # This entry saves the users input to 'PasswordEntry', it also display the sentence 'type your text here' and the function below -[line 85] will clear the entry once the user has clicked on it.
         PasswordEntryt = tk.Entry(Window3, bd=2, cursor="cross", font=("times", 13), show="*")
         PasswordEntryt.insert(0, "")
         def some_callback(event):
@@ -63,6 +87,7 @@ def PageOpen():
             return None
         PasswordEntryt.bind("<Button-1>", some_callback)
         PasswordEntryt.place(x=62, y=120)
+        #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
