@@ -242,14 +242,18 @@ def PageOpen():
 
 
 
-        #
-        Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green", state=tk.DISABLED)
-        Startbtn.place(x=160, y=180)
-        #------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+        # Once the user has entred their username they can click next whitch will go and find the file that they made (if they made one).
 
         Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green")
         Nextbtn.place(x=60, y=180)
+        #------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        # Once the user has resentered the username and password that the chose when registering, then they can click this 'logon' button witch will take them straight to the program IF their password is correct.
+        # Once this button is clicked it will run the function 'Program' -[line 70].
+        Startbtn = tk.Button(Window3, text="Log on", height=1, width=7, command=Program, font=("times", 15), cursor="top_left_arrow", fg="green", state=tk.DISABLED) # -[line 70].
+        Startbtn.place(x=160, y=180)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
