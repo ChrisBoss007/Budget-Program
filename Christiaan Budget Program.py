@@ -165,9 +165,9 @@ def PageOpen():
 
                     blank.grid(column=6, row=self.num_rows4, padx=160)
 
-                    return name
-                    return amount
-                    return rate
+
+                    return new_entry, new_entry2, variable
+
 
                 def __init__(self):
                     self.num_rows = 1
@@ -179,8 +179,8 @@ def PageOpen():
                     createRow_button.place(x=240, y=0)
 
                     print()
-
             app = App()
+
 
             class App2(object):
                 def new_row2(self):
@@ -199,10 +199,10 @@ def PageOpen():
                     "Weekly",
                     "Monthly"
                     ]
-                    variable = tk.StringVar(Window4)
-                    variable.set(OptionList2[0])
+                    variable2 = tk.StringVar(Window4)
+                    variable2.set(OptionList2[0])
 
-                    opt2 = tk.OptionMenu(Window4, variable, *OptionList2)
+                    opt2 = tk.OptionMenu(Window4, variable2, *OptionList2)
                     opt2.config(width=5, font=('Helvetica', 6))
 
                     print(rate2)
@@ -242,23 +242,23 @@ def PageOpen():
 
             app = App2()
 
-            def budget(name, amount, rate):
+            def budget(new_entry, new_entry2, variable):
 
 
-                nameincome = name.get()
+                nameincome = new_entry.get()
                 print(nameincome)
 
-                amountincome = amount.get()
+                amountincome = new_entry2.get()
                 print(amountincome)
 
-                rateincome = rate.get()
+                rateincome = variable.get()
                 print(rateincome)
 
 
             Submitlabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
             Submitlabel.place(x=240, y=40)
 
-            Submitbtn = tk.Button(Window4, text="Submit", command=lambda: budget(name, amount, rate))
+            Submitbtn = tk.Button(Window4, text="Submit", command=lambda: budget(new_entry, new_entry2, variable))
             Submitbtn.place(x=365, y=90)
 
 
