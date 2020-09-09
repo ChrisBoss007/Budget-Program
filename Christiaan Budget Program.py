@@ -95,6 +95,7 @@ def PageOpen():
 
 
 
+
         def Program():
             Window3.withdraw()
             Window4 = tk.Tk()
@@ -114,8 +115,12 @@ def PageOpen():
 
                     print(name)
 
+
+
                     new_entry2 = tk.Entry(Window4, width=8)
-                    new_entry2.insert(0, "Amount")
+                    amount = new_entry2.insert(0, "Amount")
+                    print(amount)
+
 
                     rate = OptionList = [
                     "Hourly",
@@ -131,8 +136,9 @@ def PageOpen():
 
                     print(rate)
 
+
                     blank = tk.Label(Window4, text="  ")
-                    #Get it to save the value that the user inserted for thier rate of payment
+                    #Get it to save the value that the user inserted for their rate of payment
 
                     # Put widgets in grid
                     self.num_rows += 1
@@ -143,7 +149,7 @@ def PageOpen():
                     opt.grid(column=3, row=self.num_rows3)
                     opt.bind("<Button-1>")
 
-                    entrys = []
+
 
                     new_entry.grid(column=0, row=self.num_rows)
                     def some_callback(event):
@@ -157,9 +163,11 @@ def PageOpen():
                         return None
                     new_entry2.bind("<Button-1>", some_callback)
 
-                    entrys.append(new_entry)
-
                     blank.grid(column=6, row=self.num_rows4, padx=160)
+
+                    return name
+                    return amount
+                    return rate
 
                 def __init__(self):
                     self.num_rows = 1
@@ -233,6 +241,26 @@ def PageOpen():
                     print()
 
             app = App2()
+
+            def budget(name, amount, rate):
+
+
+                nameincome = name.get()
+                print(nameincome)
+
+                amountincome = amount.get()
+                print(amountincome)
+
+                rateincome = rate.get()
+                print(rateincome)
+
+
+            Submitlabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
+            Submitlabel.place(x=240, y=40)
+
+            Submitbtn = tk.Button(Window4, text="Submit", command=lambda: budget(name, amount, rate))
+            Submitbtn.place(x=365, y=90)
+
 
 
 
