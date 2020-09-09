@@ -1,5 +1,5 @@
 #When the 'Yes' button is clicked on the first window this function will run.
-#It will destroy the first slide and open a new window (Window2) and set the dimensions and other details for the slide are written underneath:
+#It will destroy the first slide and open a new window 'Window2' and set the dimensions and other details for the slide are written underneath:
 def PageOpen():
     intro_slide.destroy()
     Window2 = tk.Tk()
@@ -12,8 +12,9 @@ def PageOpen():
     Window2.geometry("+{}+{}".format(positionRight, positionDown))
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
-    # If the user has a existing account they can login in by pressing the 'login' button -[line  on window 2, witch will run this function.
+    # If the user has a existing account they can login in by pressing the 'login' button -[line 388] on the previous window 'window2', witch will run this function.
     def login():
+        # This is where i close the previous window 'Window2', and i open a new window 'Window3', and below is where i set the dimension for the new window:
         Window2.withdraw()
         Window3 = tk.Tk()
         Window3.title("Sign In")
@@ -67,6 +68,8 @@ def PageOpen():
 
 
 
+
+
         def Program():
             Window3.withdraw()
             Window4 = tk.Tk()
@@ -78,7 +81,6 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
-
             class App(object):
                 def new_row(self):
                     # Create widgets
@@ -86,7 +88,6 @@ def PageOpen():
                     name = new_entry.insert(0, "Name of income")
 
                     print(name)
-
 
                     new_entry2 = tk.Entry(Window4, width=8)
                     new_entry2.insert(0, "Amount")
@@ -106,14 +107,7 @@ def PageOpen():
                     print(rate)
 
                     blank = tk.Label(Window4, text="  ")
-
                     #Get it to save the value that the user inserted for thier rate of payment
-
-
-
-
-
-
 
                     # Put widgets in grid
                     self.num_rows += 1
@@ -125,7 +119,6 @@ def PageOpen():
                     opt.bind("<Button-1>")
 
                     entrys = []
-
 
                     new_entry.grid(column=0, row=self.num_rows)
                     def some_callback(event):
@@ -139,13 +132,9 @@ def PageOpen():
                         return None
                     new_entry2.bind("<Button-1>", some_callback)
 
-
                     entrys.append(new_entry)
 
                     blank.grid(column=6, row=self.num_rows4, padx=160)
-
-
-
 
                 def __init__(self):
                     self.num_rows = 1
@@ -158,8 +147,6 @@ def PageOpen():
 
                     print()
 
-
-
             app = App()
 
             class App2(object):
@@ -169,7 +156,6 @@ def PageOpen():
                     name2 = new_entry3.insert(0, "Name of income")
 
                     print(name2)
-
 
                     new_entry4 = tk.Entry(Window4, width=8)
                     new_entry4.insert(0, "Amount")
@@ -190,12 +176,6 @@ def PageOpen():
 
                     #Get it to save the value that the user inserted for thier rate of payment
 
-
-
-
-
-
-
                     # Put widgets in grid
                     self.num_rows += 1
                     self.num_rows2 += 1
@@ -203,9 +183,6 @@ def PageOpen():
 
                     opt2.grid(column=9, row=self.num_rows3)
                     opt2.bind("<Button-1>")
-
-
-
 
                     new_entry3.grid(column=7, row=self.num_rows)
                     def some_callback(event):
@@ -219,11 +196,6 @@ def PageOpen():
                         return None
                     new_entry4.bind("<Button-1>", some_callback)
 
-
-
-
-
-
                 def __init__(self):
                     self.num_rows = 1
                     self.num_rows2 = 1
@@ -235,8 +207,6 @@ def PageOpen():
 
                     print()
 
-
-
             app = App2()
 
 
@@ -244,9 +214,11 @@ def PageOpen():
 
 
 
-        # Once the user has entred their username they can click next whitch will go and find the file that they made (if they made one).
-
-        Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green")
+        # Once the user has entred their username, they can clcik this button witch will go and look for a file (an account, becuse all acount inforamtion is saved on files_) in our system,
+        # the program checks that the file name is the same as the username that they have entered, if a file is found with the same name it will check if the password in that file is the sam as the one the user entered,
+        # if it is then the password is correct and the user can log on.
+        # When this button is clicked it will run the function 'openfile()' -[line 30].
+        Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green") # -[line 30].
         Nextbtn.place(x=60, y=180)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -280,7 +252,7 @@ def PageOpen():
         passw_var = tk.StringVar()
         #------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        # This is a meesage that explains what this slides perpouse is.
+        # This is a message that explains what this slides perpouse is.
         IntroLabel = tk.Message(Window3, text="Okay lets get you started, please fill in the following:", font=('times', 15), bg='white', relief="sunken", borderwidth=3, width=500).grid(columnspan=2)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
 
