@@ -94,8 +94,6 @@ def PageOpen():
 
 
 
-
-
         def Program():
             Window3.withdraw()
             Window4 = tk.Tk()
@@ -144,8 +142,6 @@ def PageOpen():
                     opt.grid(column=3, row=self.num_rows3)
                     opt.bind("<Button-1>")
 
-
-
                     new_entry.grid(column=0, row=self.num_rows)
                     def some_callback(event):
                         new_entry.delete(0, "end")
@@ -162,10 +158,6 @@ def PageOpen():
 
                     return new_entry, new_entry2, rate
 
-
-
-
-
                 def __init__(self):
                     self.num_rows = 1
                     self.num_rows2 = 1
@@ -174,26 +166,7 @@ def PageOpen():
                     createRow_button = tk.Button(
                             Window4, text='Add income row', command=self.new_row)
                     createRow_button.place(x=240, y=0)
-
-
-
-
             app = App()
-
-
-            new_entry2 = ''
-            rate = ''
-            def income():
-
-                nameincome = App.new_row().find(App.new_row())
-                amountincome = App.new_entry2.get()
-                rateincome = App.rate
-
-                print(nameincome, amountincome, rateincome)
-
-            btn = tk.Button(Window4, text="go", command=lambda: income())
-            btn.place(x=270, y=0)
-
 
             class App2(object):
                 def new_row2(self):
@@ -257,7 +230,6 @@ def PageOpen():
 
             Submitlabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
             Submitlabel.place(x=240, y=40)
-
 
 
 
