@@ -107,15 +107,14 @@ def PageOpen():
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
+
             class App(object):
                 def new_row(self):
+
                     # Create widgets
-                    new_entry = tk.Entry(Window4, width=15)
+                    v = tk.StringVar()
+                    new_entry = tk.Entry(Window4, width=15, textvariable=v)
                     name = new_entry.insert(0, "Name of income")
-
-                    mylist = []
-
-
 
                     new_entry2 = tk.Entry(Window4, width=8)
                     amount = new_entry2.insert(0, "Amount")
@@ -161,9 +160,8 @@ def PageOpen():
 
                     blank.grid(column=6, row=self.num_rows4, padx=160)
 
-                    mylist.append(name)
-                    mylist.append(amount)
-                    mylist.append(rate)
+                    return new_entry, new_entry2, rate
+
 
 
 
@@ -177,8 +175,24 @@ def PageOpen():
                             Window4, text='Add income row', command=self.new_row)
                     createRow_button.place(x=240, y=0)
 
-                    print()
+
+
+
             app = App()
+
+
+            new_entry2 = ''
+            rate = ''
+            def income():
+
+                nameincome = App.new_row().find(App.new_row())
+                amountincome = App.new_entry2.get()
+                rateincome = App.rate
+
+                print(nameincome, amountincome, rateincome)
+
+            btn = tk.Button(Window4, text="go", command=lambda: income())
+            btn.place(x=270, y=0)
 
 
             class App2(object):
@@ -239,9 +253,7 @@ def PageOpen():
 
                     print()
 
-            app = App2()
-
-
+            app2 = App2()
 
             Submitlabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
             Submitlabel.place(x=240, y=40)
