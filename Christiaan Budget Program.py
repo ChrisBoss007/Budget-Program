@@ -98,18 +98,15 @@ def PageOpen():
             Window3.withdraw()
             Window4 = tk.Tk()
             Window4.title("Budget Program")
-            Window4.geometry("700x400")
+            Window4.geometry("800x400")
             windowWidth = Window4.winfo_reqwidth()
             windowHeight = Window4.winfo_reqheight()
             positionRight = int(Window4.winfo_screenwidth() / 2 - windowWidth / 2)
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
 
-
             class App(object):
-
                 def new_row(self):
-
 
                     Unique_Val = 0
                     Unique_Val_A = 0
@@ -137,9 +134,7 @@ def PageOpen():
                     opt = tk.OptionMenu(Window4, variable, *OptionList)
                     opt.config(width=5, font=('Helvetica', 6))
 
-
                     blank = tk.Label(Window4, text="  ")
-
 
                     # Put widgets in grid
                     self.num_rows += 1
@@ -164,45 +159,48 @@ def PageOpen():
 
                     blank.grid(column=6, row=self.num_rows4, padx=160)
 
+                    self.lst1.append(entry_Box)
+                    self.lst2.append(entry_Box2)
+
                     return entry_Box, entry_Box2, rate
 
-                def save(self):
-                    name1 = self.entry_Box.get()
-                    amount1 = self.entry_Box2.get()
+                def save(self, lst1, lst2):
+                    print("List length ", len(lst1))
+                    for i in range (len(lst1)):
+                        print(lst1[i].get())
 
-                    mylist = []
-                    mylist.append(name1)
-                    mylist.append(amount1)
-
-                    print(mylist)
-
+                    print("List length ", len(lst2))
+                    for x in range (len(lst2)):
+                        print(lst2[x].get())
 
                 def __init__(self):
                     self.num_rows = 1
                     self.num_rows2 = 1
                     self.num_rows3 = 1
                     self.num_rows4 = 1
+                    self.lst1 = []
+                    self.lst2 = []
                     createRow_button = tk.Button(
                             Window4, text='Add income row', command=self.new_row)
                     createRow_button.place(x=240, y=0)
-                    savebtn = tk.Button(Window4, text="save", command=self.save)
-                    savebtn.place(x=240, y=50)
-
-
-            app = App()
-
-
+                    savebtn = tk.Button(Window4, text="save income", command=lambda: self.save(self.lst1, self.lst2))
+                    savebtn.place(x=245, y=70)
 
             class App2(object):
                 def new_row2(self):
-                    # Create widgets
-                    new_entry3 = tk.Entry(Window4, width=15)
-                    name2 = new_entry3.insert(0, "Name of income")
+                    Unique_Val2 = 0
+                    Unique_Val_2A = 0
 
-                    print(name2)
+                    v = tk.StringVar()
+                    entry_Box3 = "new_entry3{}".format(Unique_Val2)
+                    entry_Box3 = tk.Entry(Window4, width=15, textvariable=v)
+                    name2 = entry_Box3.insert(0, "Name of income")
+                    Unique_Val2 += 1
 
-                    new_entry4 = tk.Entry(Window4, width=8)
-                    new_entry4.insert(0, "Amount")
+                    entry_Box4 = "new_entry4{}".format(Unique_Val_2A)
+                    entry_Box4 = tk.Entry(Window4, width=8)
+                    amount2 = entry_Box4.insert(0, "Amount")
+                    Unique_Val_2A += 1
 
                     rate2 = OptionList2 = [
                     "Hourly",
@@ -216,10 +214,6 @@ def PageOpen():
                     opt2 = tk.OptionMenu(Window4, variable2, *OptionList2)
                     opt2.config(width=5, font=('Helvetica', 6))
 
-                    print(rate2)
-
-                    #Get it to save the value that the user inserted for thier rate of payment
-
                     # Put widgets in grid
                     self.num_rows += 1
                     self.num_rows2 += 1
@@ -228,29 +222,44 @@ def PageOpen():
                     opt2.grid(column=9, row=self.num_rows3)
                     opt2.bind("<Button-1>")
 
-                    new_entry3.grid(column=7, row=self.num_rows)
+                    entry_Box3.grid(column=7, row=self.num_rows)
                     def some_callback(event):
-                        new_entry3.delete(0, "end")
+                        entry_Box3.delete(0, "end")
                         return None
-                    new_entry3.bind("<Button-1>", some_callback)
+                    entry_Box3.bind("<Button-1>", some_callback)
 
-                    new_entry4.grid(column=8, row=self.num_rows2)
+                    entry_Box4.grid(column=8, row=self.num_rows2)
                     def some_callback(event):
-                        new_entry4.delete(0, "end")
+                        entry_Box4.delete(0, "end")
                         return None
-                    new_entry4.bind("<Button-1>", some_callback)
+                    entry_Box4.bind("<Button-1>", some_callback)
+
+                    self.lst3.append(entry_Box3)
+                    self.lst4.append(entry_Box4)
+
+                    return entry_Box3, entry_Box4, rate2
+
+                def save2(self, lst3, lst4):
+                    print("List length ", len(lst3))
+                    for j in range (len(lst3)):
+                        print(lst3[j].get())
+
+                    print("List length ", len(lst4))
+                    for y in range (len(lst4)):
+                        print(lst4[y].get())
 
                 def __init__(self):
                     self.num_rows = 1
                     self.num_rows2 = 1
                     self.num_rows3 = 1
-
+                    self.lst3 = []
+                    self.lst4 = []
                     createRow_button2 = tk.Button(
-                            Window4, text='Add income row', command=self.new_row2)
+                            Window4, text='Add outcome row', command=self.new_row2)
                     createRow_button2.place(x=440, y=0)
-
-                    print()
-
+                    savebtn2 = tk.Button(Window4, text="save outcome", command=lambda: self.save2(self.lst3, self.lst4))
+                    savebtn2.place(x=440, y=70)
+            app = App()
             app2 = App2()
 
             Submitlabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
