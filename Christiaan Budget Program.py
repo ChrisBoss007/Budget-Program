@@ -157,7 +157,7 @@ def PageOpen():
                         return None
                     entry_Box2.bind("<Button-1>", some_callback)
 
-                    blank.grid(column=6, row=self.num_rows4, padx=160)
+                    blank.grid(column=6, row=self.num_rows4, padx=180)
 
                     self.lst1.append(entry_Box)
                     self.lst2.append(entry_Box2)
