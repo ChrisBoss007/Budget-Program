@@ -186,6 +186,8 @@ def PageOpen():
                     savebtn = tk.Button(Window4, text="save income", command=lambda: self.save(self.lst1, self.lst2))
                     savebtn.place(x=245, y=70)
 
+
+
             class App2(object):
                 def new_row2(self):
                     Unique_Val2 = 0
@@ -262,9 +264,23 @@ def PageOpen():
             app = App()
             app2 = App2()
 
-            Submitlabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
+            def Calculate(lst2, lst4):
+                incomeA = lst2.get()
+                outcomeA = lst4.get()
+
+                Total = incomeA - outcomeA
+                print(Total)
+
+
+
+            Submitlabel = tk.Label(Window4, text="When you are done click below to save your entred value.", )
             Submitlabel.place(x=240, y=40)
 
+            Callabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
+            Callabel.place(x=240, y=105)
+
+            Calculatebtn = tk.Button(Window4, text="Calcuate", command=lambda: Calculate(lst2, lst4))
+            Calculatebtn.place(x=350, y=130)
 
 
 
@@ -272,10 +288,16 @@ def PageOpen():
 
 
 
-        # Once the user has entred their username, they can clcik this button witch will go and look for a file (an account, becuse all acount inforamtion is saved on files_) in our system,
-        # the program checks that the file name is the same as the username that they have entered, if a file is found with the same name it will check if the password in that file is the sam as the one the user entered,
-        # if it is then the password is correct and the user can log on.
-        # When this button is clicked it will run the function 'openfile()' -[line 30].
+
+
+
+
+
+
+
+
+        # When this button is clicked checks username and password
+        # it will run the function 'openfile()' -[line 30]: opens file, get username and find in the password file, compare with data in entryboxes.
         Nextbtn = tk.Button(Window3, text="Submit", height=1, width=7, command=lambda: openfile(), font=("times", 15), cursor="top_left_arrow", fg="green") # -[line 30].
         Nextbtn.place(x=60, y=180)
         #------------------------------------------------------------------------------------------------------------------------------------------------------
