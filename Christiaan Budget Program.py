@@ -173,6 +173,18 @@ def PageOpen():
                     for x in range (len(lst2)):
                         print(lst2[x].get())
 
+                    incomeA = lst2[]
+                    file = open('values.txt', 'w')
+                    file.writelines(str(incomeA))
+                    file.close()
+
+
+
+                    '''with open('listfile.txt', 'w') as filehandle:
+                        for listitem in lst2:
+                            filehandle.write('%s\n' % listitem)'''
+
+
                 def __init__(self):
                     self.num_rows = 1
                     self.num_rows2 = 1
@@ -249,7 +261,7 @@ def PageOpen():
                     print("List length ", len(lst4))
                     for y in range (len(lst4)):
                         print(lst4[y].get())
-
+ 
                 def __init__(self):
                     self.num_rows = 1
                     self.num_rows2 = 1
@@ -264,12 +276,34 @@ def PageOpen():
             app = App()
             app2 = App2()
 
-            def Calculate(lst2, lst4):
-                incomeA = lst2.get()
+            def Calculate():
+                file = open('values.txt', 'r')
+                lineList = [line.rstrip('\n') for line in open('values.txt')]
+                print(lineList)
+
+
+
+                '''places = []
+                with open('listfile.txt', 'r') as filehandle:
+                    for line in filehandle:
+                        currentPlace = line[:-1]
+                        places.append(currentPlace)
+
+                        print(places)'''
+
+
+
+
+                '''file2 = open(lst4, "r")
+                lineList2 = [line.rstrip('\n') for line in open(lst4)]
+                print(lineList2)'''
+
+
+                '''incomeA = lineList2[1]
                 outcomeA = lst4.get()
 
                 Total = incomeA - outcomeA
-                print(Total)
+                print(Total)'''
 
 
 
@@ -279,15 +313,8 @@ def PageOpen():
             Callabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
             Callabel.place(x=240, y=105)
 
-            Calculatebtn = tk.Button(Window4, text="Calcuate", command=lambda: Calculate(lst2, lst4))
+            Calculatebtn = tk.Button(Window4, text="Calcuate", command=lambda: Calculate())
             Calculatebtn.place(x=350, y=130)
-
-
-
-
-
-
-
 
 
 
