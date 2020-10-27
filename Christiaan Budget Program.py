@@ -165,7 +165,7 @@ def PageOpen():
                     return entry_Box, entry_Box2, rate
 
                 def save(self, lst1, lst2):
-                    file = open('values.txt', 'a')
+                    open('values.txt', 'w').close()
                     print("List length ", len(lst1))
                     for i in range (len(lst1)):
                         print(lst1[i].get())
@@ -173,9 +173,10 @@ def PageOpen():
                     print("List length ", len(lst2))
                     for x in range (len(lst2)):
                         print(lst2[x].get())
+                        file = open('values.txt', 'a')
                         file.write(self.lst2[x].get())
                         file.write('\n')
-                    file.close()
+                        file.close()
 
                 def __init__(self):
                     self.num_rows = 1
@@ -246,6 +247,7 @@ def PageOpen():
                     return entry_Box3, entry_Box4, rate2
 
                 def save2(self, lst3, lst4):
+                    open('values2.txt', 'w').close()
                     print("List length ", len(lst3))
                     for j in range (len(lst3)):
                         print(lst3[j].get())
@@ -253,6 +255,10 @@ def PageOpen():
                     print("List length ", len(lst4))
                     for y in range (len(lst4)):
                         print(lst4[y].get())
+                        file = open('values2.txt', 'a')
+                        file.write(self.lst4[y].get())
+                        file.write('\n')
+                        file.close()
  
                 def __init__(self):
                     self.num_rows = 1
@@ -269,10 +275,30 @@ def PageOpen():
             app2 = App2()
 
             def Calculate():
+                totali = 0
+                totalo = 0
+
                 file = open('values.txt', 'r')
                 income = [line.rstrip('\n') for line in open('values.txt')]
 
-                print(income[1])
+                file = open('values2.txt', 'r')
+                outcome = [line.rstrip('\n') for line in open('values2.txt')]
+
+                for x in range(0, len(income)):
+                    totali = totali + int(income[x])
+
+                print('income: ', totali)
+
+                for y in range(0, len(outcome)):
+                    totalo = totalo + int(outcome[y])
+
+                print("outcome :", totalo)
+
+                budget = totali - totalo
+
+                print("Main :", budget)
+
+
 
 
 
@@ -487,6 +513,7 @@ def PageOpen():
 # All the necessary imports were written here:
 import tkinter as tk
 from tkinter import messagebox
+import os
 #--------------------------------------------------------------------------------------
 
 # This is the first window that greats the user and briefly introduces them to the program.
