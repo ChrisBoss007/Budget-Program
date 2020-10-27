@@ -165,6 +165,7 @@ def PageOpen():
                     return entry_Box, entry_Box2, rate
 
                 def save(self, lst1, lst2):
+                    file = open('values.txt', 'a')
                     print("List length ", len(lst1))
                     for i in range (len(lst1)):
                         print(lst1[i].get())
@@ -172,18 +173,9 @@ def PageOpen():
                     print("List length ", len(lst2))
                     for x in range (len(lst2)):
                         print(lst2[x].get())
-
-                    incomeA = lst2[]
-                    file = open('values.txt', 'w')
-                    file.writelines(str(incomeA))
+                        file.write(self.lst2[x].get())
+                        file.write('\n')
                     file.close()
-
-
-
-                    '''with open('listfile.txt', 'w') as filehandle:
-                        for listitem in lst2:
-                            filehandle.write('%s\n' % listitem)'''
-
 
                 def __init__(self):
                     self.num_rows = 1
@@ -278,32 +270,10 @@ def PageOpen():
 
             def Calculate():
                 file = open('values.txt', 'r')
-                lineList = [line.rstrip('\n') for line in open('values.txt')]
-                print(lineList)
+                income = [line.rstrip('\n') for line in open('values.txt')]
 
+                print(income[1])
 
-
-                '''places = []
-                with open('listfile.txt', 'r') as filehandle:
-                    for line in filehandle:
-                        currentPlace = line[:-1]
-                        places.append(currentPlace)
-
-                        print(places)'''
-
-
-
-
-                '''file2 = open(lst4, "r")
-                lineList2 = [line.rstrip('\n') for line in open(lst4)]
-                print(lineList2)'''
-
-
-                '''incomeA = lineList2[1]
-                outcomeA = lst4.get()
-
-                Total = incomeA - outcomeA
-                print(Total)'''
 
 
 
