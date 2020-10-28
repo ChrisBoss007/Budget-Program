@@ -107,7 +107,9 @@ def PageOpen():
             positionRight = int(Window4.winfo_screenwidth() / 2 - windowWidth / 2)
             positionDown = int(Window4.winfo_screenheight() / 2 - windowHeight / 2)
             Window4.geometry("+{}+{}".format(positionRight, positionDown))
+            #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+            # This is a class that makes a row consting of 3 entrys, each time the users clicks the 'add income' button
             class App(object):
                 def new_row(self):
 
@@ -168,7 +170,7 @@ def PageOpen():
                     return entry_Box, entry_Box2, rate
 
                 def save(self, lst1, lst2):
-                    open('values.txt', 'w').close()
+                    open('income.txt', 'w').close()
                     print("List length ", len(lst1))
                     for i in range (len(lst1)):
                         print(lst1[i].get())
@@ -176,7 +178,7 @@ def PageOpen():
                     print("List length ", len(lst2))
                     for x in range (len(lst2)):
                         print(lst2[x].get())
-                        file = open('values.txt', 'a')
+                        file = open('income.txt', 'a')
                         file.write(self.lst2[x].get())
                         file.write('\n')
                         file.close()
@@ -250,7 +252,7 @@ def PageOpen():
                     return entry_Box3, entry_Box4, rate2
 
                 def save2(self, lst3, lst4):
-                    open('values2.txt', 'w').close()
+                    open('outcome.txt', 'w').close()
                     print("List length ", len(lst3))
                     for j in range (len(lst3)):
                         print(lst3[j].get())
@@ -258,7 +260,7 @@ def PageOpen():
                     print("List length ", len(lst4))
                     for y in range (len(lst4)):
                         print(lst4[y].get())
-                        file = open('values2.txt', 'a')
+                        file = open('outcome.txt', 'a')
                         file.write(self.lst4[y].get())
                         file.write('\n')
                         file.close()
@@ -278,18 +280,18 @@ def PageOpen():
             app2 = App2()
 
             def Calculate():
+                # Here the codesets the varible 'total' to 0 so that it will start from 0 and not give random answers.
                 totali = 0
                 totalo = 0
 
-                file = open('values.txt', 'r')
-                income = [line.rstrip('\n') for line in open('values.txt')]
+                file = open('income.txt', 'r')
+                income = [line.rstrip('\n') for line in open('income.txt')]
 
-                file = open('values2.txt', 'r')
-                outcome = [line.rstrip('\n') for line in open('values2.txt')]
+                file = open('outcome.txt', 'r')
+                outcome = [line.rstrip('\n') for line in open('outcome.txt')]
 
                 for x in range(0, len(income)):
                     totali = totali + int(income[x])
-
                 print('income: ', totali)
 
                 for y in range(0, len(outcome)):
@@ -301,16 +303,24 @@ def PageOpen():
 
                 print("Main :", budget)
 
+                # This Label presents the user with the end resluts based on the users input.
                 Totallabel = tk.Label(Window4, text= "Total Income: " + str(totali) + ('\n') + "Total Outcome: " + str(totalo) + ('\n') + "Budget: " + str(budget))
                 Totallabel.place(x=325, y=160)
+                #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+            # This lable simply explains to the user what the button below it does.
             Submitlabel = tk.Label(Window4, text="When you are done click below to save your entred value.", )
             Submitlabel.place(x=240, y=40)
+            #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+            # This label simply explains to the user what the button below it does.
             Callabel = tk.Label(Window4, text="When you are done click below to work out your budget.", )
             Callabel.place(x=240, y=105)
+            #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+            # This button will run the funcion 'Calculate'
+            # Which will open the file containg all the financial informantion entered by the user, and will take those values and preform calculations with them and present the user with the reslusts.
             Calculatebtn = tk.Button(Window4, text="Calcuate", command=lambda: Calculate())
             Calculatebtn.place(x=350, y=130)
             #------------------------------------------------------------------------------------------------------------------------------------------------------
