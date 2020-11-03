@@ -43,7 +43,7 @@ def PageOpen():
             # This is where i open the file with the same name as whatever the users entered or set as their username.
             try:
                 file = open(username, "r")
-                
+
             except OSError:
                 tk.messagebox.showinfo("Error", "Usersname invalid, account not found")
             lineList = [line.rstrip('\n') for line in open(username)]
@@ -296,19 +296,23 @@ def PageOpen():
                 file = open('outcome.txt', 'r')
                 outcome = [line.rstrip('\n') for line in open('outcome.txt')]
 
-                for x in range(0, len(income)):
-                    totali = totali + int(income[x])
-                print('income: ', totali)
+                try:
+                    for x in range(0, len(income)):
+                        totali = totali + int(income[x])
+                    print('income: ', totali)
 
-                for y in range(0, len(outcome)):
-                    totalo = totalo + int(outcome[y])
+                    for y in range(0, len(outcome)):
+                        totalo = totalo + int(outcome[y])
 
-                print("outcome :", totalo)
+                    print("outcome :", totalo)
 
 
-                budget = totali - totalo
+                    budget = totali - totalo
 
-                print("Main :", budget)
+                    print("Main :", budget)
+                except ValueError:
+                    tk.messagebox.showinfo("Error", "Only numbers must be entered into the boxes")
+
 
                 # This Label presents the user with the end resluts based on the users input.
                 Totallabel = tk.Label(Window5, text= "Total Income: " + str(totali) + ('\n') + "Total Outcome: " + str(totalo) + ('\n') + "Budget: " + str(budget))
