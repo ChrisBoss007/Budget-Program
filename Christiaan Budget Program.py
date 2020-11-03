@@ -41,20 +41,26 @@ def PageOpen():
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
             # This is where i open the file with the same name as whatever the users entered or set as their username.
-            file = open(username, "r")
+            try:
+                file = open(username, "r")
+                
+            except OSError:
+                tk.messagebox.showinfo("Error", "Usersname invalid, account not found")
             lineList = [line.rstrip('\n') for line in open(username)]
             print(lineList)
+
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
             # This is where it checks if the password that the user entered, matches the password set user the username that they have entered.
             password2 = lineList[1]
             print(password2)
+            name = lineList[2]
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
             # If the user has entered the correct password they can move on to the program by clicking the 'Submit' button -[line 236].
             # This code below will make the button that open the program avalibil to use, so they can only click the button (that takes them to the program) if their password is correct, if not this button will be unlclickeable.
             if passwordt == password2:
-                tk.messagebox.showinfo("Acepted", "Password acepted")
+                tk.messagebox.showinfo("Acepted", "Password acepted welcome back " + name)
                 if (Startbtn['state'] == tk.NORMAL):
                     Startbtn['state'] = tk.DISABLED
                 else:
@@ -299,6 +305,7 @@ def PageOpen():
 
                 print("outcome :", totalo)
 
+
                 budget = totali - totalo
 
                 print("Main :", budget)
@@ -310,8 +317,8 @@ def PageOpen():
 
 
             # This lable simply explains to the user what the button below it does.
-            Submitlabel = tk.Label(Window5, text="When you are done click below to save your entred value.", )
-            Submitlabel.place(x=240, y=40)
+            Submitlabel = tk.Label(Window5, text="When you are done click below to save your entred value, \n PLEASE make sure that you only numbers into  the entrys", )
+            Submitlabel.place(x=240, y=30)
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
             # This label simply explains to the user what the button below it does.
@@ -453,21 +460,26 @@ def PageOpen():
             #------------------------------------------------------------------------------------------------------------------------------------------------------
 
             # This opens a new text file and writes all the information into it, using the unique variables made above. -[line 326-331]
-            file = open(name, "a")
-            user_Input = text_File.get()
-            file.write("Username: " + user_Input)
-            file.write("\n")
-            file.write(password)
-            file.write("\n")
-            file.write("FistName: " + firstname)
-            file.write("\n")
-            file.write("SurName: " + surname)
-            file.write("\n")
-            file.write("Email: " + email)
-            file.write("\n")
-            file.write("Phone number: " + phonenumber)
-            file.close()
-            return name, password
+            if len(password) < 8:
+                print("Make sure your password is at lest 8 letters")
+                tk.messagebox.showinfo("Error", "Make sure your password is at lest 8 letters")
+            else:
+                tk.messagebox.showinfo("Perfect", "Your password is strong")
+                file = open(name, "a")
+                user_Input = text_File.get()
+                file.write("Username: " + user_Input)
+                file.write("\n")
+                file.write(password)
+                file.write("\n")
+                file.write(firstname)
+                file.write("\n")
+                file.write("SurName: " + surname)
+                file.write("\n")
+                file.write("Email: " + email)
+                file.write("\n")
+                file.write("Phone number: " + phonenumber)
+                file.close()
+                return name, password
             #------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
