@@ -1,7 +1,7 @@
 # Please refer to line() where the program actually starts.
-# Once the 'Yes' button has been clicked on the first window, it will run this function.
-# This function will destroy the first window 'intro_slide' and open a new window 'Window2' and sets the dimensions and other details for this window which are written underneath:
-def PageOpen():
+# Once the 'Yes' button has been clicked on the first window "window1", it will run this function, whitch will close "window1" and opne a new window, "window2", whitch contains 3 buttons and a label.
+# It add these widgets by using place(), and using tk, to draw the window.
+def window2():
     intro_slide.destroy()
     Window2 = tk.Tk()
     Window2.title("Account information")
@@ -13,6 +13,7 @@ def PageOpen():
     Window2.geometry("+{}+{}".format(positionRight, positionDown))
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
+    # Makes a new window containg 2 entry boxes and 2 buttons, by using pack()
     # If the user has a existing account they can login in by pressing the 'login' button -[line 388] on the previous window 'window2', witch will run this function.
     def login():
         # This is where i close the previous window 'Window2', and i open a new window 'Window3', and below is where i set the dimension for the new window:
@@ -547,7 +548,7 @@ from tkinter import messagebox
 import os
 #--------------------------------------------------------------------------------------
 
-# Below is were the first window is created that will great the user and briefly informs them of the purpose of this program.
+# Below is were the first window is created that will greet the user and briefly informs them of the purpose of this program.
 # The first part is where the dimensions and other details about the window are set.
 root = tk.Tk()
 root.title("Welcome to Budget calculator")
@@ -559,24 +560,27 @@ positionDown = int(root.winfo_screenheight() / 2 - windowHeight / 2)
 root.geometry("+{}+{}".format(positionRight, positionDown))
 #-------------------------------------------------------------------------------------
 
-# Making a introduction message that will introduce the user to the program.
+# Introduction message that will introduce the user to the program.
+# Adds a label to the window.
 intro_slide = root
-intro_message1 = "Welcome! \n To budget calculator"
-intro_msg = tk.Message(root, text=intro_message1, justify="center")
-intro_msg.config(fg="Yellow", bg="Black", font=('times', 20, 'italic'))
-intro_msg.pack()
+window1_message1 = "Welcome! \n To budget calculator"
+window1_message2 = tk.Message(root, text=window1_message1, justify="center")
+window1_message2.config(fg="Yellow", bg="Black", font=('times', 20, 'italic'))
+window1_message2.pack()
 #--------------------------------------------------------------------------------------
 
-# This is the second label further explaining what the program does.
-intro_message2 = "Here you can deposit or withdraw money and see your progress towards your goals, and insert your income and expenses and we will draw up a plan to solve your finance situation."
-intro_msg2 = tk.Message(root, text=intro_message2)
-intro_msg2.config(bg='white', relief="sunken", borderwidth=3, font=('times', 17))
-intro_msg2.pack()
+# Another label futher exsplaing the purpouse of the prgram.
+# Adds a label to the window.
+window1_message3 = "Here you can deposit or withdraw money and see your progress towards your goals, and insert your income and expenses and we will draw up a plan to solve your finance situation."
+window1_message4 = tk.Message(root, text=window1_message3)
+window1_message4.config(bg='white', relief="sunken", borderwidth=3, font=('times', 17))
+window1_message4.pack()
 #--------------------------------------------------------------------------------------
 
 # A label asking the user if they are done reading the introduction message and if they are ready to start.
-intro_label = tk.Label(root, text="Are you ready to start?", font=("times", 15))
-intro_label.pack()
+# Adds a label to the window.
+window1_label = tk.Label(root, text="Are you ready to start?", font=("times", 15))
+window1_label.pack()
 #--------------------------------------------------------------------------------------
 
 # Creating a frame for the first window.
@@ -586,20 +590,20 @@ frame.pack()
 
 # This button is the exit button in case the user accidentally opened the program, once clicked the program will exit.
 # This button sets the 'command' to 'quit' in order to quit once clicked.
-intro_button1 = tk.Button(frame,
+window1_no_btn = tk.Button(frame,
                   text="NO",
                   fg="red",
                   command=quit)
-intro_button1.pack(side=tk.RIGHT)
+window1_no_btn.pack(side=tk.RIGHT)
 #--------------------------------------------------------------------------------------
 
 # Once the user has finished reading they can start the program by clicking on 'YES', this will run the (PageOpen) function - [line 3].
 # This button sets the 'command' to 'PageOpen' witch means that when the user clicks on this button it will run the function PageOpen.
-intro_button2 = tk.Button(frame,
+window1_yes_btn = tk.Button(frame,
                          text="YES",
                          fg="green",
-                         command=PageOpen)  #-(line 3)
-intro_button2.pack(side=tk.LEFT)
+                         command=window2)  #-(line 3)
+window1_yes_btn.pack(side=tk.LEFT)
 #--------------------------------------------------------------------------------------
 
 root.mainloop()
