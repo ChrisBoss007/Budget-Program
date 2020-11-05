@@ -1,4 +1,4 @@
-# Please refer to line() where the program actually starts.
+# Please refer to line(539) where the program actually starts.
 # Once the 'Yes' button has been clicked on the first window "window1", it will run this function, whitch will close "window1" and opne a new window, "window2", whitch contains 3 buttons and a label.
 # It add these widgets by using place(), and using tk, to draw the window.
 def window2():
@@ -14,7 +14,7 @@ def window2():
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
     # Makes a new window containg 2 entry boxes and 2 buttons, by using pack()
-    # If the user has a existing account they can login in by pressing the 'login' button -[line 388] on the previous window 'window2', witch will run this function.
+    # If the user has a existing account they can login in by pressing the 'login' button -[line 504] on the previous window 'window2', witch will run this function.
     def login():
         # This is where i close the previous window 'Window2', and i open a new window 'Window3', and below is where i set the dimension for the new window:
         Window2.withdraw()
@@ -28,39 +28,39 @@ def window2():
         Window4.geometry("+{}+{}".format(positionRight, positionDown))
         #--------------------------------------------------------------------------------------------------------------------------------------------------
 
-        # This label informs the user what they should type in the corresponding entry below. -[line 50]
+        # This label informs the user what they should type in the corresponding entry below.
         UserName = tk.Label(Window4, text="Username:", font=('times', 15))
         UserName.place(x=100, y=20)
         #--------------------------------------------------------------------------------------------------------------------------------------------------
 
-        # This function will search for a text file with the same name as what ever the user typed in when making an account, it will then check if the password typed in is the same as the one that is on the text file,
-        # if it is the same it will grant access and make the 'log on' button usable, if not it will print error, and the 'log on' button will remain disabled.
+        # This function searches for a file with the same title as the username that the user has entred, it then checks if the file exsits, if it does it will check if the passoword inside the file matches the one the users is asked to entre on this window.
+        # It searches for a file with the same name as the username entered and check if the passowrd in the file is the same if yes it will grant access and make the 'log on' button usable, if not it will print error, and the 'log on' button will remain disabled.
         def openfile():
             # This is where i 'get' the values of the entry where the user entered their information.
-            username = UserEntry.get() # -[line 54].
-            passwordt = PasswordEntryt.get() # -[line 65].
+            username = UserEntry.get() #
+            password = PasswordEntryt.get() #
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
             # This is where i open the file with the same name as whatever the users entered or set as their username.
+            # If the file cant be found it will send a error message, and if the password is incorect it will do thye same.
             try:
                 file = open(username, "r")
-
             except OSError:
                 tk.messagebox.showinfo("Error", "Usersname invalid, account not found")
-            lineList = [line.rstrip('\n') for line in open(username)]
-            print(lineList)
 
+            infoList = [line.rstrip('\n') for line in open(username)]
+            print(infoList)
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
             # This is where it checks if the password that the user entered, matches the password set user the username that they have entered.
-            password2 = lineList[1]
+            password2 = infoList[1]
             print(password2)
-            name = lineList[2]
+            name = infoList[2]
             #--------------------------------------------------------------------------------------------------------------------------------------------------
 
-            # If the user has entered the correct password they can move on to the program by clicking the 'Submit' button -[line 236].
+            # If the user has entered the correct password they can move on to the program by clicking the 'Submit' button
             # This code below will make the button that open the program avalibil to use, so they can only click the button (that takes them to the program) if their password is correct, if not this button will be unlclickeable.
-            if passwordt == password2:
+            if password == password2:
                 tk.messagebox.showinfo("Acepted", "Password acepted welcome back " + name)
                 if (Startbtn['state'] == tk.NORMAL):
                     Startbtn['state'] = tk.DISABLED
@@ -72,7 +72,7 @@ def window2():
 
 
         # For this entry the user is asked to enter their 'username',
-        # This entry saves the users input to 'UserEntry', it also display the sentence 'type your text here' and the function below -[line 69] will clear the entry once the user has clicked on it.
+        # This entry saves the users input to 'UserEntry', it also display the sentence 'type your text here' and the function below will clear the entry once the user has clicked on it.
         UserEntry = tk.Entry(Window4, bd=2, cursor="cross", font=("times", 13))
         UserEntry.insert(0, "Type your text here!")
         def some_callback(event):
@@ -82,9 +82,9 @@ def window2():
         UserEntry.place(x=62, y=50)
         #--------------------------------------------------------------------------------------------------------------------------------------------------
 
-        # This label informs the user what they should type in in the corresponding entry below. -[line 79]
-        UserPassword = tk.Label(Window4, text="Password:", font=('times', 15))
-        UserPassword.place(x=105, y=90)
+        # This label informs the user what they should type in in the corresponding entry below.
+        PasswordLabel = tk.Label(Window4, text="Password:", font=('times', 15))
+        PasswordLabel.place(x=105, y=90)
         #--------------------------------------------------------------------------------------------------------------------------------------------------
 
         # For this entry the user is asked to enter their 'password',
@@ -99,10 +99,8 @@ def window2():
         #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-        #This function is where the main calculator is found, here it will ask the users for its financial information and respond by giving them there total amount of money they make.
+        # This function is where the main calculator is found, here it will ask the users for its financial information and respond by giving them there total amount of money they make.
+        # It will have a button to add incomes\outcoms and will have a button to save the values entered and to caluclute them.
         def Program():
             #This is where it closes the previous window (Window3), and opens a new window (Window4) and below that i simply set the dimensions for this new window.
             Window4.withdraw()
@@ -118,7 +116,7 @@ def window2():
 
             # This is a class that makes a row consting of 3 entrys, each time the users clicks the 'add income' button
             class App(object):
-                def new_row(self):
+                def new_income_row(self):
 
                     Unique_Val = 0
                     Unique_Val_A = 0
@@ -198,15 +196,15 @@ def window2():
                     self.lst1 = []
                     self.lst2 = []
                     createRow_button = tk.Button(
-                            Window5, text='Add income row', command=self.new_row)
+                            Window5, text='Add income row', command=self.new_income_row)
                     createRow_button.place(x=240, y=0)
-                    savebtn = tk.Button(Window5, text="save income", command=lambda: self.save(self.lst1, self.lst2))
-                    savebtn.place(x=245, y=70)
+                    saveincomebtn = tk.Button(Window5, text="save income", command=lambda: self.save(self.lst1, self.lst2))
+                    saveincomebtn.place(x=245, y=70)
 
-
-
+            # This is the class for the outcomes row, and for every outcome this class will run to make repeated rows.
             class App2(object):
-                def new_row2(self):
+                def new_outcome_row(self):
+
                     Unique_Val2 = 0
                     Unique_Val_2A = 0
 
@@ -279,13 +277,14 @@ def window2():
                     self.lst3 = []
                     self.lst4 = []
                     createRow_button2 = tk.Button(
-                            Window5, text='Add outcome row', command=self.new_row2)
+                            Window5, text='Add outcome row', command=self.new_outcome_row)
                     createRow_button2.place(x=440, y=0)
                     savebtn2 = tk.Button(Window5, text="save outcome", command=lambda: self.save2(self.lst3, self.lst4))
                     savebtn2.place(x=440, y=70)
             app = App()
             app2 = App2()
 
+            # This function will open the file and pull the values from the file and then proced to subtract the total values in the outcome file from the income file.
             def Calculate():
                 # Here the codesets the varible 'total' to 0 so that it will start from 0 and not give random answers.
                 totali = 0
@@ -306,7 +305,6 @@ def window2():
                         totalo = totalo + int(outcome[y])
 
                     print("outcome :", totalo)
-
 
                     budget = totali - totalo
 
@@ -336,10 +334,6 @@ def window2():
             Calculatebtn = tk.Button(Window5, text="Calcuate", command=lambda: Calculate())
             Calculatebtn.place(x=350, y=130)
             #------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
 
 
         # When this button is clicked checks username and password
@@ -602,7 +596,7 @@ window1_no_btn.pack(side=tk.RIGHT)
 window1_yes_btn = tk.Button(frame,
                          text="YES",
                          fg="green",
-                         command=window2)  #-(line 3)
+                         command=window2)  #-(line 4)
 window1_yes_btn.pack(side=tk.LEFT)
 #--------------------------------------------------------------------------------------
 
